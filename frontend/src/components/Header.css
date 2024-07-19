@@ -1,0 +1,14 @@
+.header {
+    background-color: #fff5cc;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+.header .auth-links a {
+    margin-left: 10px;
+    text-decoration: none;
+    color: #000;
+    font-size: 18px;
+}

@@ -1,0 +1,37 @@
+.register-method-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start; /* 위쪽 정렬 */
+    padding: 10px; /* 패딩을 줄여서 상하 크기 조정 */
+    padding-top: 50px; /* 위쪽에 여백 추가 */
+    background-color: #f9f9f9;
+    height: auto; /* 전체 높이를 내용에 맞게 설정 */
+    
+    width: 97%;
+    position: relative; /* 백 버튼 위치 설정을 위한 relative 포지션 */
+}
+
+.register-method-back-button {
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 0px;
+    left: 50%; /* 가운데로 이동 */
+    transform: translateX(215px); /* 가운데에서 오른쪽으로 이동 */
+    width: 60px;
+}
+
+.register-method-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin: 20px 0; /* 위아래 간격 추가 */
+    width: 250px; /* 버튼의 너비를 늘림 */
+}

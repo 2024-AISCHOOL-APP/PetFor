@@ -1,0 +1,73 @@
+.Professional-Certification-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    height: 100vh;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    height: 500px
+    
+}
+
+.Professional-Certification-back-button {
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    font-size: 24px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    width: 60px;
+    margin-left: 63%;
+}
+    
+
+
+.logo-image {
+    max-width: 150px;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.input-group label {
+    flex: 1;
+    font-size: 16px;
+    margin-right: 10px;
+}
+
+.input-group input {
+    flex: 2;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100px;
+}

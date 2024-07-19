@@ -1,0 +1,59 @@
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+}
+
+h1 {
+    margin-bottom: 20px;
+}
+
+.form-group {
+    width: 100%;
+    max-width: 500px; 
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 15px;
+    border: #ccc;
+}
+
+label {
+    width: 120px; 
+    font-size: 18px;
+    margin-right: 10px;
+    text-align: left; 
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 15px;
+}
+
+button[type="button"] {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.submit-button {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 500px; /* 제출 버튼도 같은 너비로 설정 */
+}
