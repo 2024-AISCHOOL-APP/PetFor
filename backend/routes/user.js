@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const conn = require('../config/database');
+const conn = require('../config/database');
 
 router.post('/handleSignIn', (req, res)=>{
     console.log('SignIn Data', req.body);
@@ -28,20 +28,18 @@ router.post('/handleSignIn', (req, res)=>{
 
 router.post('/handleSignUp', (req, res)=>{
     console.log('SignUp Data', req.body);
-    // const {userId, userPw, userName, userAdd} = req.body;
+    const {userId, userPw, userNickname, userProfile, userType} = req.body;
 
-    const sql = `INSERT INTO user_TB VALUES (?, ?, ?, ?)`;
+    const sql = `INSERT INTO user VALUES (?, ?, ?, ?, current_timestamp(), ?)`;
 
-    // conn.query(sql, [userId, userPw, userName, userAdd], (err, rows)=>{
-    //     // console.log(rows);
-    //     if(rows){
-    //         console.log('회원가입 성공');
-    //         res.json({success : true})
-    //     } else {
-    //         console.log('회원가입 실패');
-    //         res.json({success : false})
-    //     }
-    // })
+    conn.query(sql, [userId, userPw, userNickname, userType, userProfile], (err, rows)=>{
+        if(rows){
+            res.json({success : true})
+        } else {
+            console.error(err);
+            res.json({success : false})
+        }
+    })
 })
 
 module.exports = router;
