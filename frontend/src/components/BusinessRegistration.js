@@ -25,10 +25,6 @@ const BusinessRegistration = () => {
                     <input type="text" id="name" placeholder="이름을 입력하세요" required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="registration-number">주민등록번호</label>
-                    <input type="text" id="registration-number" placeholder="주민등록번호를 입력하세요" required />
-                </div>
-                <div className="input-group">
                     <label htmlFor="business-number">사업자번호</label>
                     <input type="text" id="business-number" placeholder="사업자번호를 입력하세요" required />
                 </div>

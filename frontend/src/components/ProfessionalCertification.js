@@ -25,10 +25,6 @@ const ProfessionalCertification = () => {
                     <input type="text" id="name" placeholder="이름을 입력하세요" required />
                 </div>
                 <div className="input-group">
-                    <label htmlFor="registration-number">주민등록번호</label>
-                    <input type="text" id="registration-number" placeholder="주민등록번호를 입력하세요" required />
-                </div>
-                <div className="input-group">
                     <label htmlFor="certification-number">전문의번호</label>
                     <input type="text" id="certification-number" placeholder="전문의번호를 입력하세요" required />
                 </div>

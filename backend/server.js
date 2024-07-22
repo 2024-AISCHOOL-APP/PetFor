@@ -7,6 +7,7 @@ const fileStore = require('session-file-store')(session);
 
 const indexRouter = require('./routes');
 const userRouter = require('./routes/user');
+const listRouter = require('./routes/list')
 
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 app.use(express.json());
@@ -27,6 +28,7 @@ app.use(session({
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/list',listRouter);
 
 app.set('port', process.env.PORT || 8000);
 app.listen(app.get('port'), ()=>{
