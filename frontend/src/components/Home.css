@@ -4,25 +4,26 @@
     flex-direction: column;
     align-items: center;
 }
-
+/*버튼박스*/
 .buttons {
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
 }
-
+/*버튼*/
 .button {
     margin: 0 40px;
     padding: 20px 30px;
     background-color: #fff5cc;
     border-radius: 15px;
     text-decoration: none;
-    color: #000;
+    color: hsl(0, 0%, 0%);
     font-size: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     width: 150px;
+    
 }
 
 .search-container {
@@ -30,13 +31,6 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
-}
-
-.search-container input {
-    padding: 10px;
-    font-size: 16px;
-    width: 300px;
-    margin-right: 10px;
 }
 
 .search-container button {
@@ -47,4 +41,64 @@
     cursor: pointer;
     color: #000;
     border-radius: 15px;
+}
+
+.category-container {
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    margin-top: 20px;
+    gap: 20px;
+}
+
+.category-box {
+    border-radius: 10px;
+    text-align: center;
+    width: 250px; /* 카테고리 박스의 너비를 지정 */
+}
+
+.category-box-header {
+    background-color: #fff;
+    
+    padding: 1px;
+    border-top-left-radius: 15px;
+    border-top-right-radius: 15px;
+    background-color: #fff5cc;
+}
+
+.category-box-content {
+    padding: 20px;
+    background-color: #fff5cc;
+    border-bottom-left-radius: 15px;
+    border-bottom-right-radius: 15px;
+    
+    
+}
+
+.category-select {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    
+}
+
+.selected-category {
+    margin-top: 10px;
+    font-size: 16px;
+    color: #000;
+    
+}
+
+.home-radio-label {
+    display: block;
+    margin: 10px 0;
+    margin-top: 15px;
+}
+
+.home-radio-input {
+    margin-right: 5px;
+    width: 25px;
 }
