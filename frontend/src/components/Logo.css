@@ -2,14 +2,14 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    height: 180px; 
+    margin-top: 50px;
+    height: 100px; 
 
 }
 
 .logo-image {
     max-width: none !important; 
-    width: 300px !important; 
+    width: 250px !important; 
     height: auto !important; 
     object-fit: contain !important
 }
