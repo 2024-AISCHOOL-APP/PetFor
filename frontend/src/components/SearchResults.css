@@ -4,7 +4,9 @@
     align-items: center;
     padding: 20px;
     background-color: #f9f9f9;
-    height: 55vh;
+    height: 65vh;
+    
+    
 }
 
 h2 {
@@ -13,17 +15,27 @@ h2 {
 
 .results-list {
     width: 100%;
-    max-width: 600px;
+    max-width: 700px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     max-height: 50vh; /* 최대 높이 설정 */
     overflow-y: auto; /* 스크롤 생성 */
+    
+    
 }
 
-.result-item {
+.searching-item {
     padding: 10px;
     background-color: #fff5cc;
     border: 1px solid #ccc;
     border-radius: 15px;
+    align-content: left;
+    font-size: 18px;
+    
 }
+
+.chat_button{
+    margin-top: 15px;
+}
+

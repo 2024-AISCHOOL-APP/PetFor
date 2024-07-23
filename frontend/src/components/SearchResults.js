@@ -1,34 +1,52 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation ,useNavigate, Link} from 'react-router-dom';
 import './SearchResults.css';
+import axios from '../axios';
 
 const SearchResults = () => {
-    const results = [
-        { title: '검색 결과 1', description: '검색 결과 1의 설명입니다.' },
-        { title: '검색 결과 2', description: '검색 결과 2의 설명입니다.' },
-        { title: '검색 결과 3', description: '검색 결과 3의 설명입니다.' },
-        { title: '검색 결과 4', description: '검색 결과 4의 설명입니다.' },
-        { title: '검색 결과 5', description: '검색 결과 5의 설명입니다.' },
-        { title: '검색 결과 6', description: '검색 결과 6의 설명입니다.' },
-        { title: '검색 결과 7', description: '검색 결과 7의 설명입니다.' },
-        { title: '검색 결과 8', description: '검색 결과 8의 설명입니다.' },
-        { title: '검색 결과 9', description: '검색 결과 9의 설명입니다.' },
-        { title: '검색 결과 10', description: '검색 결과 10의 설명입니다.' },
-        { title: '검색 결과 11', description: '검색 결과 11의 설명입니다.' },
-        { title: '검색 결과 12', description: '검색 결과 12의 설명입니다.' },
-    ];
+    const location = useLocation();
+    const [categories, setCategories] = useState({ category1: '', category2: '' });
+    const [searches, setSearches] = useState([]);
+    const navigate = useNavigate();
+    
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const category1 = queryParams.get('category1');
+        const category2 = queryParams.get('category2');
+    
+        setCategories({ category1, category2 });
+    }, [location.search]);
 
+    useEffect(() => {
+        if (categories.category1 && categories.category2) {
+            axios.get(`/search/searchpage?keyword1=${categories.category1}&keyword2=${categories.category2}`)
+                .then((response) => setSearches(response.data))
+                .catch((error) => console.error('Error fetching searches:', error));
+        }
+    }, [categories]);
+    const splitString = (str) => str.split('/').map((part, index) => <p key={index}>● {part.trim()}</p>);
     return (
         <main className="search-results-container">
-            <h2>검색 결과</h2>
+            <h2>{categories.category1} ({categories.category2})</h2>
             <section className="results-list">
-                {results.map((result, index) => (
-                    <article key={index} className="result-item">
-                        <h3>{result.title}</h3>
-                        <p>{result.description}</p>
+                {searches.map((searching, index) => (
+                    <article key={index} className="searching-item">
+                        <h2>증상</h2>
+                        <div>{splitString(searching.symptom)}</div>
+                        <h2>원인</h2>
+                        <div>{splitString(searching.cause)}</div>
+                        <h2>해결 방안</h2>
+                        <div>{splitString(searching.solution)}</div>
+                        
                     </article>
                 ))}
             </section>
+            <p >추가 정보 필요 시 채팅을 통해 전문가 연결</p>
+            <nav className="chat_button">
+                <Link to="/chat" className="button">전문가 채팅 연결</Link>
+            </nav>
         </main>
+        
     );
 };
 
