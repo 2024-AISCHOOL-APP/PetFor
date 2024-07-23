@@ -22,13 +22,29 @@ router.post('/business', (req, res)=>{
     conn.query(sql, [userId], (err, rows)=>{
         console.log('rows : ', rows);
         if (rows.length>0) {
-            const sql = `UPDATE register SET register_type = 'C' , business_number = ? WHERE user_id = ?`
-            conn.query(sql,[businessNumber,userId],(err,rows)=>{
-                if (rows) {
-                    res.json({ success: true })
+            const sql = `SELECT register_type FROM register WHERE user_id = ?`
+            conn.query(sql, [userId], (err, rows)=>{
+                const register_type = rows[0].register_type;
+                if (register_type==='B'){
+                    const sql = `UPDATE register SET business_number = ?, store_name = ? WHERE user_id = ?`
+                    conn.query(sql, [businessNumber, storeName, userId], (err,rows)=>{
+                        if (rows) {
+                            res.json({ success: true })
+                        } else {
+                            console.error(err);
+                            res.json({ success: false })
+                        }
+                    })
                 } else {
-                    console.error(err);
-                    res.json({ success: false })
+                    const sql = `UPDATE register SET register_type = 'C' , business_number = ? WHERE user_id = ?`
+                    conn.query(sql,[businessNumber,userId],(err,rows)=>{
+                        if (rows) {
+                            res.json({ success: true })
+                        } else {
+                            console.error(err);
+                            res.json({ success: false })
+                        }
+                    })
                 }
             })
         } else {
@@ -53,15 +69,30 @@ router.post('/professional', (req, res)=>{
 
     const sql = `SELECT * FROM register WHERE user_id = ?`
     conn.query(sql, [userId], (err, rows)=>{
-        console.log('rows : ', rows);
         if (rows.length>0) {
-            const sql = `UPDATE register SET register_type = 'C' , doctor_number = ? WHERE user_id = ?`
-            conn.query(sql,[doctorNumber,userId],(err,rows)=>{
-                if (rows) {
-                    res.json({ success: true })
+            const sql = `SELECT register_type FROM register WHERE user_id = ?`
+            conn.query(sql, [userId], (err, rows)=>{
+                const register_type = rows[0].register_type;
+                if (register_type==='D'){
+                    const sql = `UPDATE register SET doctor_number = ?, store_name = ? WHERE user_id = ?`
+                    conn.query(sql, [doctorNumber, storeName, userId], (err,rows)=>{
+                        if (rows) {
+                            res.json({ success: true })
+                        } else {
+                            console.error(err);
+                            res.json({ success: false })
+                        }
+                    })
                 } else {
-                    console.error(err);
-                    res.json({ success: false })
+                    const sql = `UPDATE register SET register_type = 'C' , doctor_number = ? WHERE user_id = ?`
+                    conn.query(sql,[doctorNumber,userId],(err,rows)=>{
+                        if (rows) {
+                            res.json({ success: true })
+                        } else {
+                            console.error(err);
+                            res.json({ success: false })
+                        }
+                    })
                 }
             })
         } else {
