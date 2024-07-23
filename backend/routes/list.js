@@ -109,7 +109,27 @@ router.post('/professional', (req, res)=>{
         }
     })
     
-
+    router.post('/post',(req,res)=>{
+        let sql = 'SELECT * FROM community';
+        conn.query(sql, (err, rows) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            res.json(rows);
+            console.log(rows);
+        });
+    })
+    
+    router.post('/writepost', (req, res)=>{
+        let sql = `INSERT INTO community (user_id, title, content, posting_date) VALUES (?, ?, ?, current_timestamp())`;
+        conn.query(sql, [req.body.userId, req.body.title, req.body.content], (err, rows) => {
+            if (err) {
+                res.json({success : false})
+                return res.status(500).send(err);
+            }
+            res.json({success : true});
+        })
+    })
     
 })
 
