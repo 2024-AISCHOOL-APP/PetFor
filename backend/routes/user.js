@@ -4,26 +4,24 @@ const conn = require('../config/database');
 
 router.post('/handleSignIn', (req, res)=>{
     console.log('SignIn Data', req.body);
-    // const {userId, userPw} = req.body;
+    const {userId, userPw} = req.body;
 
     /*
     conn.query(sql, values, callback)
     */
-    // const sql = `
-    // SELECT user_id FROM linkdb_member
-    // WHERE user_id=? AND user_pw=?
-    // `
-    // conn.query(sql, [userId, userPw], (err, rows)=>{
-    //     // console.log(rows);
-    //     if(rows.length>0){
-    //         console.log('로그인 성공');
-    //         req.session.user = rows[0];
-    //         res.json({ success : true });
-    //     } else {
-    //         console.log('로그인 실패');
-    //         res.json({ success : false });
-    //     }
-    // })
+    const sql = `SELECT user_id FROM user WHERE user_id=? AND pw=?`;
+
+    conn.query(sql, [userId, userPw], (err, rows)=>{
+        // console.log(rows);
+        if(rows.length>0){
+            console.log('로그인 성공');
+            req.session.user = rows[0];
+            res.json({ success : true });
+        } else {
+            console.log('로그인 실패');
+            res.json({ success : false });
+        }
+    })
 })
 
 router.post('/handleSignUp', (req, res)=>{

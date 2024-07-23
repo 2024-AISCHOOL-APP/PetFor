@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation ,useNavigate, Link} from 'react-router-dom';
+import { useLocation , Link} from 'react-router-dom';
 import './SearchResults.css';
 import axios from '../axios';
 
@@ -7,7 +7,7 @@ const SearchResults = () => {
     const location = useLocation();
     const [categories, setCategories] = useState({ category1: '', category2: '' });
     const [searches, setSearches] = useState([]);
-    const navigate = useNavigate();
+  
     
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
