@@ -4,19 +4,6 @@ import './Register.css';
 import axios from '../axios'
 
 const Register = () => {
-    // const businesses = [
-    //     '서울 전문 동물병원',
-    //     '재환 동물병원',
-    //     '은영 동물병원',
-    //     '현지 동물병원',
-    //     '효주 동물병원',
-    //     '민규 동물병원 폐업',
-    //     '배고파',
-    //     'ㅁㄴㅇㄴㅁㅇ',
-    //     'ㄴㅁㅇㄴㅁㅇㄴㅁ',
-    //     'ㄴㅁㅇㄴㅁ'
-    // ];
-
     const [businesses, setBusinesses] = useState([]);
 
     useEffect(() => {

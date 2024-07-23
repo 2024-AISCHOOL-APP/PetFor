@@ -1,21 +1,38 @@
 import React, { useState } from 'react';
+// import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WritePost.css';
+// import { UserInfo } from '../UserInfo';
+import axios from '../axios';
 
 const WritePost = () => {
+    // const { userId } = useContext(UserInfo);
+    const userId = 'test'; // 로그인 기능 구현 시 변경
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
-    const navigate = useNavigate();
+    const nav = useNavigate();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // 글쓰기 로직 처리
-        console.log('Title:', title);
-        console.log('Content:', content);
+    const handleSubmit = async (e) => {
+        try {
+            const data = {
+                userId : userId,
+                title : title,
+                content : content
+            }
+            e.preventDefault();
+            const response = await axios.post('/list/writepost', data)
+                                        .catch((error) => console.error('Error fetching businesses:', error));
+            console.log(response.data.success);
+            response.data.success
+            ? nav('/community')
+            : nav('/writepost')
+        } catch (error) {
+            console.error(error);
+        }
     };
 
     const handleBack = () => {
-        navigate('/community');
+        nav('/community');
     };
 
     return (
