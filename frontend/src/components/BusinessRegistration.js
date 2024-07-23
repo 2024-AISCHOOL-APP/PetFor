@@ -1,17 +1,17 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './BusinessRegistration.css';
-import { useContext } from 'react';
-import { UserInfo } from '../UserInfo';
+// import { useContext } from 'react';
+// import { UserInfo } from '../UserInfo';
 import axios from '../axios';
 
 const BusinessRegistration = () => {
     //const { userId } = useContext(UserInfo);
     const userId = '은영' // 로그인 완료되면 userId 받아오기
     const [storeName, setStoreName] = useState('');
-    const [doctorNumber, setDoctorNumber] = useState('');
+    const [doctorNumber] = useState('');
     const [businessNumber, setBusinessNumber] = useState('');
-    const [registerType, setRegisterType] = useState('');
+    const [registerType] = useState('');
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
