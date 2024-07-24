@@ -148,4 +148,45 @@ router.get('/post/:id', (req, res) => {
     });
 });
 
+// 게시글 삭제 처리 라우터
+router.delete('/post/:id', (req, res) => {
+    const postId = req.params.id;
+    const userId = req.body.userId; // 클라이언트에서 전송된 로그인된 사용자 ID
+
+    // 게시글 작성자와 로그인된 사용자 ID를 확인하는 쿼리
+    const checkSql = 'SELECT user_id FROM community WHERE community_idx = ?';
+    conn.query(checkSql, [postId], (error, rows) => {
+        if (error) {
+            console.error('Error fetching post details:', error);
+            return res.status(500).json({ success: false, message: 'Failed to fetch post details' });
+        }
+        if (rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'Post not found' });
+        }
+
+        const postAuthorId = rows[0].user_id;
+
+        // 게시글 작성자와 로그인된 사용자 ID를 비교
+        if (postAuthorId !== userId) {
+            return res.status(403).json({ success: false, message: 'Unauthorized to delete this post' });
+        }
+
+        // 게시글 삭제
+        const deleteSql = 'DELETE FROM community WHERE community_idx = ?';
+        conn.query(deleteSql, [postId], (deleteError, results) => {
+            if (deleteError) {
+                console.error('Error deleting post:', deleteError);
+                return res.status(500).json({ success: false, message: 'Failed to delete post' });
+            }
+            if (results.affectedRows > 0) {
+                res.json({ success: true });
+            } else {
+                res.status(404).json({ success: false, message: 'Post not found' });
+            }
+        });
+    });
+});
+
+
+
 module.exports = router;
