@@ -4,7 +4,7 @@ import './Header.css';
 import { AuthContext } from '../AuthContext';
 
 function Header() {
-    const { isLoggedIn, userId, logout } = useContext(AuthContext);
+    const { isLoggedIn, nickname, logout } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const handleLogout = () => {
@@ -17,7 +17,7 @@ function Header() {
             <div className="auth-links">
                  {isLoggedIn ? (
                    <>
-                   <span> {userId}님</span> {/* 사용자 ID 표시 */}
+                   <span> {nickname}님</span> {/* 사용자 ID 표시 */}
                    <Link  to="/login" onClick={handleLogout}>로그아웃</Link>
                    <Link  to="/signup">회원가입</Link>
                </>

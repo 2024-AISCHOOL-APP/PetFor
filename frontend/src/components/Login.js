@@ -21,8 +21,8 @@ const Login = () => {
             });
 
             // 로그인 성공 시 홈 페이지로 리다이렉트
-            if (response.data.success) {
-                login(userId); // 로그인 성공 시 Context의 login 메서드 호출
+           if (response.data.success) {
+                login(userId, response.data.nickname); // 로그인 성공 시 Context의 login 메서드 호출
                 nav('/'); // 홈 페이지로 리다이렉트
             } else {
                 nav('/login'); // 로그인 페이지로 리다이렉트
