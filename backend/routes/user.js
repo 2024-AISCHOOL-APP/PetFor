@@ -40,4 +40,24 @@ router.post('/handleSignUp', (req, res)=>{
     })
 })
 
+// 세션확인 : 로그인 상태 확인
+router.get('/checkSession', (req, res) => {
+    if (req.session.user) {
+        res.json({ loggedIn: true });
+    } else {
+        res.json({ loggedIn: false });
+    }
+});
+
+// 로그아웃 요청 처리 라우터
+router.post('/handleLogout', (req, res) => {
+    req.session.destroy(err => {
+        if (err) {
+            console.error('Logout error:', err);
+            return res.status(500).json({ success: false });
+        }
+        res.json({ success: true });
+    });
+});
+
 module.exports = router;

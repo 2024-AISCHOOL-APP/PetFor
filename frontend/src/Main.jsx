@@ -15,6 +15,7 @@ import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴�
 import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
 import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
 import CommunityContent from './components/CommunityContent';
+import { AuthProvider } from './AuthContext'; // AuthProvider 임포트
 
 import { UserInfo } from './UserInfo'
 
@@ -26,6 +27,7 @@ const Main = () => {
     const [userType, setUserType] = useState('U');
 
   return (
+    <AuthProvider>
     <UserInfo.Provider
       value={{
         userId,
@@ -56,6 +58,7 @@ const Main = () => {
         <Route path="/community-content/:id" element={<CommunityContent />} />
       </Routes>
     </UserInfo.Provider>
+    </AuthProvider>
   );
 }
 
