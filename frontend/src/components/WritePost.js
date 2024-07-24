@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
-// import { useContext } from 'react';
+ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WritePost.css';
-// import { UserInfo } from '../UserInfo';
+import { UserInfo } from '../UserInfo';
 import axios from '../axios';
 
 const WritePost = () => {
-    // const { userId } = useContext(UserInfo);
-    const userId = 'test'; // 로그인 기능 구현 시 변경
+     const { userId } = useContext(UserInfo);
+    //const userId = 'test'; // 로그인 기능 구현 시 변경
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const nav = useNavigate();

@@ -48,28 +48,26 @@ h1 {
     font-size: 15px;
     flex:1;
     text-align: center;
-    width: 87%;
+    width: 83%;
+    
 
 }
 
 .post-author {
     font-size: 16px;
     color: black;
-    margin-left: 10px;
+    margin: 0px;
     position: relative;
-    width: 13%;
+    padding-left: 10px;
+    width: 17%;
+    height: 100%;
+    overflow: hidden;
+    border-left: 5px solid #f9f9f9;
+    padding-top: 30px;
+   
 }
 
-.post-author::before {
-    content: '';
-    position: absolute;
-    left: -15px;
-    top: 50%;
-    transform: translateY(-50%);
-    width: 5px;
-    height: 340%;
-    background-color: #f9f9f9;
-}
+
 
 .indexNumber{
     margin-left: 15px;
