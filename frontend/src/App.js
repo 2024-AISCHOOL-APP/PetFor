@@ -13,6 +13,7 @@ import SearchResults from './components/SearchResults';
 import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴포넌트 임포트
 import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
 import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
+import Updatepost from './components/Updatepost';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
                 <Route path="/register-method" element={<RegisterMethod />} /> 
                 <Route path="/business-registration" element={<BusinessRegistration />} /> 
                 <Route path="/professional-certification" element={<ProfessionalCertification />} /> 
+                <Route path="/Updatepost/:id" element={<Updatepost />} />
                 
 
             </Routes>

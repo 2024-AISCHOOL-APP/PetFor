@@ -187,6 +187,42 @@ router.delete('/post/:id', (req, res) => {
     });
 });
 
+router.put('/post/:id', (req, res) => {
+    const postId = req.params.id;
+    const { userId, title, content } = req.body;
 
+    // 게시글 작성자와 로그인된 사용자 ID를 확인하는 쿼리
+    const checkSql = 'SELECT user_id FROM community WHERE community_idx = ?';
+    conn.query(checkSql, [postId], (error, rows) => {
+        if (error) {
+            console.error('Error fetching post details:', error);
+            return res.status(500).json({ success: false, message: 'Failed to fetch post details' });
+        }
+        if (rows.length === 0) {
+            return res.status(404).json({ success: false, message: 'Post not found' });
+        }
+
+        const postAuthorId = rows[0].user_id;
+
+        // 게시글 작성자와 로그인된 사용자 ID를 비교
+        if (postAuthorId !== userId) {
+            return res.status(403).json({ success: false, message: 'Unauthorized to update this post' });
+        }
+
+        // 게시글 수정
+        const updateSql = 'UPDATE community SET title = ?, content = ? WHERE community_idx = ?';
+        conn.query(updateSql, [title, content, postId], (updateError, results) => {
+            if (updateError) {
+                console.error('Error updating post:', updateError);
+                return res.status(500).json({ success: false, message: 'Failed to update post' });
+            }
+            if (results.affectedRows > 0) {
+                res.json({ success: true });
+            } else {
+                res.status(404).json({ success: false, message: 'Post not found' });
+            }
+        });
+    });
+});
 
 module.exports = router;
