@@ -1,13 +1,13 @@
 import React,{useState} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfessionalCertification.css';
-// import { useContext } from 'react';
-// import { UserInfo } from '../UserInfo';
+import { useContext } from 'react';
+import { UserInfo } from '../UserInfo';
 import axios from '../axios';
 
 const ProfessionalCertification = () => {
-    //const { userId } = useContext(UserInfo);
-    const userId = 'test7' // 로그인 완료되면 userId 받아오기
+    const { userId } = useContext(UserInfo);
+    //const userId = 'test7' // 로그인 완료되면 userId 받아오기
     const [storeName, setStoreName] = useState('');
     const [doctorNumber, setDoctorNumber] = useState('');
     const [businessNumber] = useState('');
