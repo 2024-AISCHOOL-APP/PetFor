@@ -43,18 +43,21 @@ h1 {
     
 }
 
+
 .post-title {
     font-size: 15px;
     flex:1;
     text-align: center;
+    width: 87%;
 
 }
 
 .post-author {
     font-size: 16px;
-    color: gray;
+    color: black;
     margin-left: 10px;
     position: relative;
+    width: 13%;
 }
 
 .post-author::before {

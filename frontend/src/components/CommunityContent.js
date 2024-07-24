@@ -49,9 +49,10 @@ const handleBackClick = () => {
             <section className="results-list">
                 
             <button className="community-method-back-button" onClick={handleBackClick}>←</button>
-                <h2 className='title'>{post.title}</h2>
-                    <p className='userId'>작성자 : {post.user_id}</p>
+                
                     <article className="content-item">
+                    <div className='titleBox'><h3 className='title'>{post.title}</h3><h3 className='userId'>작성자 : {post.user_id}</h3></div>
+                    
                         <div className='content'>{post.content}</div>
                     </article>
                 
