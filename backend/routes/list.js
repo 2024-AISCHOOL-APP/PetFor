@@ -131,4 +131,22 @@ router.post('/writepost', (req, res)=>{
     })
 })
 
+// 포스트 세부 정보 가져오기
+router.get('/post/:id', (req, res) => {
+    const postId = req.params.id;
+    const sql = 'SELECT * FROM community WHERE community_idx = ?';
+
+    conn.query(sql, [postId], (error, rows) => {
+        if (error) {
+            console.error('Error fetching post details: ', error);
+            return res.status(500).json({ error: 'An error occurred' });
+        }
+        if (rows.length > 0) {
+            res.json(rows[0]);
+        } else {
+            res.status(404).json({ error: 'Post not found' });
+        }
+    });
+});
+
 module.exports = router;

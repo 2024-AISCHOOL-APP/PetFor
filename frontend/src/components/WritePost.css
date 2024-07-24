@@ -15,7 +15,7 @@
     cursor: pointer;
     font-size: 24px;
     position: absolute;
-    top: 250px;
+    top: 200px;
     left: 50%; 
     transform: translateX(210px); /* 가운데에서 오른쪽으로 이동 */
     width: 60px;
