@@ -29,7 +29,7 @@ const Main = () => {
     const [userId, setUserId] = useState(null);
     const [userPw, setUserPw] = useState(null);
     const [userNickname, setUserNickname] = useState(null);
-    const [userProfile, setUserProfile] = useState('../../public/images/basic.png');
+    const [userProfile, setUserProfile] = useState('/images/basic.png');
     const [userType, setUserType] = useState('U');
 
   return (

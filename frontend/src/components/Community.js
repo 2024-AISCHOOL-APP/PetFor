@@ -29,9 +29,7 @@ const Community = () => {
                      <article 
                      key={post.community_idx} 
                      className="post"
-                     onClick={() => goToPost(post.community_idx)}
-                     
-                 >
+                     onClick={() => goToPost(post.community_idx)}>
                         <p className='indexNumber'>{post.community_idx}</p> 
                         {/* 여기 인덱스 번호도 디자인 만들어 주세요 */}
                         <h3 className="post-title">{post.title}</h3>
