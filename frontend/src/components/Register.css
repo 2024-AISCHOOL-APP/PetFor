@@ -1,3 +1,13 @@
+
+/* src/App.css */
+@font-face {
+    font-family: 'OnGulIp RyuTtung';
+    src: url('../../public/fonts/온글잎\ 류뚱체.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    
+  }
+
 .register-container {
     display: flex;
     flex-direction: column;
@@ -16,6 +26,9 @@
     border-radius: 15px;
     cursor: pointer;
     margin-bottom: 35px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'OnGulIp RyuTtung' ;
+    font-size: 20px
 }
 .business-list {
     width: 100%;
@@ -24,6 +37,7 @@
     flex-direction: column;
     gap: 15px;
     overflow-y: auto;
+    font-size: 20px;
     
 }
 .business-item {
@@ -32,5 +46,5 @@
     border: 1px solid #ccc;
     border-radius: 15px;
     text-align: center;
-    
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

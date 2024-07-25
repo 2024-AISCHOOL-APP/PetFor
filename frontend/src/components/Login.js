@@ -3,10 +3,12 @@ import './Login.css';
 import { UserInfo } from '../UserInfo';
 import axios from '../axios';
 import { useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
 
 const Login = () => {
    
     const { userId, setUserId, userPw, setUserPw } = useContext(UserInfo);
+    const { login } = useContext(AuthContext);
     const nav = useNavigate(); 
 
     // 폼 제출 처리 함수
@@ -19,9 +21,12 @@ const Login = () => {
             });
 
             // 로그인 성공 시 홈 페이지로 리다이렉트
-            response.data.success
-                ? nav('/')
-                : nav('/login'); 
+           if (response.data.success) {
+                login(userId, response.data.nickname); // 로그인 성공 시 Context의 login 메서드 호출
+                nav('/'); // 홈 페이지로 리다이렉트
+            } else {
+                nav('/login'); // 로그인 페이지로 리다이렉트
+            }
         } catch (error) {
             console.error('로그인 중 오류 발생:', error);
         }
@@ -50,7 +55,7 @@ const Login = () => {
                         required
                     />
                 </fieldset>
-                <button type="submit" className="submit-button">Log in</button> 
+                <button type="submit" className="submit-button">로그인</button> 
             </form>
         </main>
     );

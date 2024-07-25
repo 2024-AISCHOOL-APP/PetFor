@@ -1,16 +1,25 @@
-import React, { useState } from 'react';
-// import { useContext } from 'react';
+import React, { useState,useEffect } from 'react';
+ import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WritePost.css';
-// import { UserInfo } from '../UserInfo';
+//import { UserInfo } from '../UserInfo';
 import axios from '../axios';
+import { AuthContext } from '../AuthContext'; // AuthContext import
 
 const WritePost = () => {
     // const { userId } = useContext(UserInfo);
-    const userId = 'test'; // 로그인 기능 구현 시 변경
+    //const userId = 'test'; // 로그인 기능 구현 시 변경
+    const { isLoggedIn, userId } = useContext(AuthContext); // AuthContext에서 로그인 상태와 userId 가져오기
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
     const nav = useNavigate();
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            nav('/login'); // 로그인하지 않은 경우 로그인 페이지로 이동
+        }
+    }, [isLoggedIn, nav]);
+
 
     const handleSubmit = async (e) => {
         try {

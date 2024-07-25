@@ -15,9 +15,13 @@ import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴�
 import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
 import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
 import CommunityContent from './components/CommunityContent';
+import Updatepost from './components/Updatepost';
 import Chatting from './components/Chatting';
 
+import { AuthProvider } from './AuthContext'; // AuthProvider 임포트
+
 import { UserInfo } from './UserInfo'
+import ChatBotButton from './components/ChatBotButton';
 
 const Main = () => {
     const [userId, setUserId] = useState(null);
@@ -27,6 +31,7 @@ const Main = () => {
     const [userType, setUserType] = useState('U');
 
   return (
+    <AuthProvider>
     <UserInfo.Provider
       value={{
         userId,
@@ -42,6 +47,8 @@ const Main = () => {
       }}>
         <Header />
         <Logo />
+        <ChatBotButton></ChatBotButton>
+        
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
@@ -56,8 +63,10 @@ const Main = () => {
         <Route path="/business-registration" element={<BusinessRegistration />} />
         <Route path="/professional-certification" element={<ProfessionalCertification />} />
         <Route path="/community-content/:id" element={<CommunityContent />} />
+        <Route path="/Updatepost/:id" element={<Updatepost />} />
       </Routes>
     </UserInfo.Provider>
+    </AuthProvider>
   );
 }
 

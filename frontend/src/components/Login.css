@@ -1,3 +1,12 @@
+/* src/App.css */
+@font-face {
+    font-family: 'OnGulIp RyuTtung';
+    src: url('../../public/fonts/온글잎\ 류뚱체.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    
+  }
+
 .login-container {
     display: flex;
     flex-direction: column;
@@ -5,7 +14,6 @@
     justify-content: center;
     height: 300px;
     padding: 0px;
-
     background-color: #f9f9f9;
     margin-top: 1px;
     
@@ -42,4 +50,6 @@ button {
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    font-family: 'OnGulIp RyuTtung';
+    font-size: 25px;
 }

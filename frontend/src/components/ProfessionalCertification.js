@@ -1,13 +1,15 @@
-import React,{useState} from 'react';
+import React,{useState,useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import './ProfessionalCertification.css';
-// import { useContext } from 'react';
-// import { UserInfo } from '../UserInfo';
+import { useContext } from 'react';
+//import { UserInfo } from '../UserInfo';
+import { AuthContext } from '../AuthContext'; // AuthContext import
 import axios from '../axios';
 
 const ProfessionalCertification = () => {
     //const { userId } = useContext(UserInfo);
-    const userId = 'test7' // 로그인 완료되면 userId 받아오기
+    //const userId = 'test7' // 로그인 완료되면 userId 받아오기
+    const { isLoggedIn, userId } = useContext(AuthContext); // AuthContext에서 로그인 상태와 userId 가져오기
     const [storeName, setStoreName] = useState('');
     const [doctorNumber, setDoctorNumber] = useState('');
     const [businessNumber] = useState('');
@@ -15,6 +17,14 @@ const ProfessionalCertification = () => {
     
     const navigate = useNavigate();
 
+
+    useEffect(() => {
+        if (!isLoggedIn) {
+            navigate('/login'); // 로그인하지 않은 경우 로그인 페이지로 이동
+        }
+    }, [isLoggedIn, navigate]);
+
+    
     const handleSubmit = async (e) => {
         try{ e.preventDefault();
             // 등록 로직 처리
