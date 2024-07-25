@@ -72,7 +72,7 @@ const Chat = () => {
                 </ul>
             </section>
             <form action='/chatting' onSubmit={goChatting}>
-                <button type='submit'>채팅</button>
+                <button type='submit' className='chatting-go'>채팅</button>
             </form>
         </main>
     );

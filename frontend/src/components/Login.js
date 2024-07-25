@@ -55,7 +55,7 @@ const Login = () => {
                         required
                     />
                 </fieldset>
-                <button type="submit" className="submit-button">로그인</button> 
+                <button type="submit" className="login-submit-button">로그인</button> 
             </form>
         </main>
     );

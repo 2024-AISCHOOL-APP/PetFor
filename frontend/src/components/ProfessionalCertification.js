@@ -63,7 +63,7 @@ const ProfessionalCertification = () => {
                     <input type="text" id="certification-number" placeholder="전문의번호를 입력하세요" required
                     onChange={e=>setDoctorNumber(e.target.value)} />
                 </div>
-                <button type="submit" className="submit-button">등록</button>
+                <button type="submit" className="pro-submit-button">등록</button>
             </form>
         </div>
     );
