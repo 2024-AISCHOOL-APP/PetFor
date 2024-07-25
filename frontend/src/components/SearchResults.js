@@ -31,17 +31,22 @@ const SearchResults = () => {
             <section className="results-list">
                 {searches.map((searching, index) => (
                     <article key={index} className="searching-item">
-                        <h2>증상</h2>
-                        <div>{splitString(searching.symptom)}</div>
-                        <h2>원인</h2>
-                        <div>{splitString(searching.cause)}</div>
-                        <h2>해결 방안</h2>
-                        <div>{splitString(searching.solution)}</div>
+                        <div className='content-container'>
+                            <h2>증상</h2>{splitString(searching.symptom)}
+                        </div>
+                        <div className='content-container'>
+                            <h2>원인</h2>
+                            <div>{splitString(searching.cause)}</div>
+                        </div>
+                        <div className='content-container'>
+                            <h2>해결 방안</h2>
+                            <div>{splitString(searching.solution)}</div>
+                        </div>
                         
                     </article>
                 ))}
             </section>
-            <p >추가 정보 필요 시 채팅을 통해 전문가 연결</p>
+            <p className='ps' >추가 정보 필요 시 채팅을 통해 전문가 연결</p>
             <nav className="chat_button">
                 <Link to="/chat" className="button">전문가 채팅 연결</Link>
             </nav>
