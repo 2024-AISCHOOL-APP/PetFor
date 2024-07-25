@@ -46,7 +46,7 @@ const WritePost = () => {
 
     return (
         <div className="write-post-container">
-            <button className="back-button" onClick={handleBack}>←</button>
+            <button className="wri-back-button" onClick={handleBack}>←</button>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
                     <input
@@ -67,7 +67,7 @@ const WritePost = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="submit-button">작성</button>
+                <button type="submit" className="wri-submit-button">작성</button>
             </form>
         </div>
     );

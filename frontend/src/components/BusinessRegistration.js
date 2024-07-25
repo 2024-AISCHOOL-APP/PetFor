@@ -58,7 +58,7 @@ const BusinessRegistration = () => {
                     <input type="text" id="business-number" placeholder="사업자번호를 입력하세요" required 
                     onChange={e=>setBusinessNumber(e.target.value)}/>
                 </div>
-                <button type="submit" className="submit-button">등록</button>
+                <button type="submit" className="bus-submit-button">등록</button>
             </form>
         </div>
     );

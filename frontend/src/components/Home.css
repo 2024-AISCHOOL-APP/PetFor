@@ -41,17 +41,19 @@
     justify-content: center;
     align-items: center;
     margin-top: 20px;
+    
 }
 
 .search-container button {
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 21px;
     background-color: #fff5cc;
     border: none;
     cursor: pointer;
     color: #000;
     border-radius: 15px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-family: 'OnGulIp RyuTtung';
 }
 
 .category-container {

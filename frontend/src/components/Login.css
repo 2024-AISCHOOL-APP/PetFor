@@ -44,13 +44,19 @@ input {
     border-radius: 5px;
 }
 
-button {
+
+
+.login-submit-button{
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     background-color: #fff5cc;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    max-width: 500px; /* 제출 버튼도 같은 너비로 설정 */
     font-family: 'OnGulIp RyuTtung';
-    font-size: 25px;
 }
+
+
