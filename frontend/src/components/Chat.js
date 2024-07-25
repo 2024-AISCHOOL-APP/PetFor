@@ -1,5 +1,6 @@
 import React from 'react';
 import './Chat.css';
+import axios from '../axios';
 
 const Chat = () => {
     const chattingPeople = [
@@ -32,6 +33,20 @@ const Chat = () => {
         { name: '핑키', imgSrc: '/images/basic.png' },
     ];
 
+    const goChatting = async (e) => {
+        try {
+            e.preventDefault();
+            const response = await axios.post('/chat/chatting', {userId : 'test'})
+                                        .catch((error)=>console.error('Error fetching chat', error));
+            // console.log(response.data.success);
+            // response.data.success
+            // ? nav('/chatting')
+            // : nav('/chat')
+        } catch(error) {
+            console.error(error);
+        }
+    };
+
     return (
         <main className="chat-container">
             <section className="chat-section">
@@ -56,6 +71,9 @@ const Chat = () => {
                     ))}
                 </ul>
             </section>
+            <form action='/chatting' onSubmit={goChatting}>
+                <button type='submit'>채팅</button>
+            </form>
         </main>
     );
 };

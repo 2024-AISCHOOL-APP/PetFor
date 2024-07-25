@@ -15,6 +15,7 @@ import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴�
 import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
 import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
 import CommunityContent from './components/CommunityContent';
+import Chatting from './components/Chatting';
 
 import { UserInfo } from './UserInfo'
 
@@ -46,6 +47,7 @@ const Main = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/community" element={<Community />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path='/chatting' element={<Chatting />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/writepost" element={<WritePost />} />
