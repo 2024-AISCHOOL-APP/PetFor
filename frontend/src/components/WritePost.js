@@ -2,13 +2,10 @@ import React, { useState,useEffect } from 'react';
  import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './WritePost.css';
-//import { UserInfo } from '../UserInfo';
 import axios from '../axios';
 import { AuthContext } from '../AuthContext'; // AuthContext import
 
 const WritePost = () => {
-    // const { userId } = useContext(UserInfo);
-    //const userId = 'test'; // 로그인 기능 구현 시 변경
     const { isLoggedIn, userId } = useContext(AuthContext); // AuthContext에서 로그인 상태와 userId 가져오기
     const [title, setTitle] = useState('');
     const [content, setContent] = useState('');
