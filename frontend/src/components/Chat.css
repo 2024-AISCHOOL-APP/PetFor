@@ -4,9 +4,9 @@
     align-items: flex-start;
     padding: 20px;
     background-color: #f9f9f9;
-    height: 450px;
+    height: 400px;
     position: relative;
-    padding-top: 50px; /* 컨테이너 상단에 여백 조정 */
+    padding-top: 3%; /* 컨테이너 상단에 여백 조정 */
 }
 
 .chat-section {
@@ -15,14 +15,14 @@
     align-items: center;
     margin: 0 20px;
     width: 280px; /* 섹션 너비 조정 */
-    max-height: 400px; /* 섹션의 최대 높이 설정 */
+    max-height: 100%; /* 섹션의 최대 높이 설정 */
     overflow-y: auto; /* 세로 스크롤 생성 */
     overflow-x: hidden; /* 가로 스크롤 숨기기 */
     border: 1px solid #ccc; /* 박스 테두리 추가 */
     border-radius: 15px; /* 박스 모서리를 둥글게 설정 */
     padding: 10px;
     background-color: #fff5cc;
-    margin-top: 10px; /* 섹션을 더 위로 이동 */
+    margin-top: 0%; /* 섹션을 더 위로 이동 */
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
