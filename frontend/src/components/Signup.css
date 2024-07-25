@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    background-color: #f9f9f9;
+    background-color: #fff9f3 ;
 }
 
 h1 {
@@ -46,9 +46,9 @@ button[type="button"] {
     margin-left: 10px;
 }
 
-.submit-button {
+.signUp-submit-button {
     padding: 10px 20px;
-    font-size: 18px;
+    font-size: 20px;
     background-color: #fff5cc;
     border: none;
     border-radius: 15px;
@@ -56,4 +56,5 @@ button[type="button"] {
     margin-top: 20px;
     width: 100%;
     max-width: 500px; /* 제출 버튼도 같은 너비로 설정 */
+    font-family: 'OnGulIp RyuTtung';
 }

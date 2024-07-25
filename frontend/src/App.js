@@ -14,6 +14,7 @@ import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴�
 import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
 import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
 import Updatepost from './components/Updatepost';
+import SideImages from './components/SideImages';
 
 
 function App() {
@@ -21,6 +22,7 @@ function App() {
         <div className="App">
             <Header />
             <Logo />
+            <SideImages />
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/register" element={<Register />} />

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './WritePost.css';
+import './Updatepost.css';
 import axios from '../axios';
 import { AuthContext } from '../AuthContext';
 
@@ -57,7 +57,7 @@ const UpdatePost = () => {
 
     return (
         <div className="write-post-container">
-            <button className="back-button" onClick={handleBack}>←</button>
+            <button className="update-back-button" onClick={handleBack}>←</button>
             <form onSubmit={handleSubmit}>
                 <div className="input-group">
                     <input
@@ -78,7 +78,7 @@ const UpdatePost = () => {
                         required
                     />
                 </div>
-                <button type="submit" className="submit-button">수정</button>
+                <button type="submit" className="up-submit-button">수정</button>
             </form>
         </div>
     );

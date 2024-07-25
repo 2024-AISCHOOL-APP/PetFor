@@ -17,10 +17,12 @@ import ProfessionalCertification from './components/ProfessionalCertification'; 
 import CommunityContent from './components/CommunityContent';
 import Updatepost from './components/Updatepost';
 import Chatting from './components/Chatting';
+import SideImages from './components/SideImages';
 
 import { AuthProvider } from './AuthContext'; // AuthProvider 임포트
 
 import { UserInfo } from './UserInfo'
+
 import ChatBotButton from './components/ChatBotButton';
 
 const Main = () => {
@@ -45,10 +47,11 @@ const Main = () => {
         userType,
         setUserType
       }}>
+        <SideImages />
         <Header />
+        
         <Logo />
         <ChatBotButton></ChatBotButton>
-        
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />

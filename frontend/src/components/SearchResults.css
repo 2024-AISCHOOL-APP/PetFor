@@ -3,7 +3,7 @@
     flex-direction: column;
     align-items: center;
     padding: 10px;
-    background-color: #f9f9f9;
+    background-color: #fff9f3 ;
     height: 65vh;
     
     
@@ -54,5 +54,6 @@ h2 {
 .ps{
     margin: 5px;
 }
+
 
 

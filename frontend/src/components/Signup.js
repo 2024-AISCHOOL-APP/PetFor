@@ -76,8 +76,8 @@ function Signup() {
               required />
             {/* <button type="button">중복확인</button> */}
           </fieldset>
-          <button type="submit" className="submit-button">
-            Join Us!
+          <button type="submit" className="signUp-submit-button">
+            회원가입
           </button>
         </form>
       </main>
