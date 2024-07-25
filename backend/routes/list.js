@@ -109,15 +109,48 @@ router.post('/professional', (req, res) => {
     });
 });
 
-router.post('/post', (req, res) => {
-    let sql = 'SELECT * FROM community ORDER BY posting_date DESC';
-    conn.query(sql, (err, rows) => {
-        if (err) {
-            return res.status(500).send(err);
-        }
-        res.json(rows);
-    });
+//글 목록 가져오기 (페이지네이션 적용) 및 닉네임 나오게하기
+// 총 게시글 수를 반환
+router.post('/post', async (req, res) => {
+    const { page = 1, limit = 6 } = req.body;
+    const offset = (page - 1) * limit;
+
+    try {
+        // 총 게시글 수를 가져오는 쿼리
+        const countSql = 'SELECT COUNT(*) as total FROM community';
+        const countResult = await new Promise((resolve, reject) => {
+            conn.query(countSql, (err, results) => {
+                if (err) return reject(err);
+                resolve(results[0].total);
+            });
+        });
+
+        // 게시글 목록을 가져오는 쿼리
+        const sql = `
+            SELECT c.community_idx, c.title, c.user_id, c.posting_date, u.nickname 
+            FROM community c
+            JOIN user u ON c.user_id = u.user_id
+            ORDER BY c.posting_date DESC 
+            LIMIT ? OFFSET ?
+        `;
+        const posts = await new Promise((resolve, reject) => {
+            conn.query(sql, [parseInt(limit), parseInt(offset)], (err, rows) => {
+                if (err) return reject(err);
+                resolve(rows);
+            });
+        });
+
+        res.json({
+            posts,
+            totalPosts: countResult
+        });
+    } catch (error) {
+        console.error('SQL 쿼리 오류:', error);
+        res.status(500).send('서버 내부 오류');
+    }
 });
+
+
 
 router.post('/writepost', (req, res) => {
     let sql = `INSERT INTO community (user_id, title, content, posting_date) VALUES (?, ?, ?, current_timestamp())`;
@@ -133,7 +166,12 @@ router.post('/writepost', (req, res) => {
 // 포스트 세부 정보 가져오기
 router.get('/post/:id', (req, res) => {
     const postId = req.params.id;
-    const sql = 'SELECT * FROM community WHERE community_idx = ?';
+    const sql = `
+        SELECT c.community_idx, c.title, c.content, c.user_id, u.nickname
+        FROM community c
+        JOIN user u ON c.user_id = u.user_id
+        WHERE c.community_idx = ?
+    `;
 
     conn.query(sql, [postId], (error, rows) => {
         if (error) {

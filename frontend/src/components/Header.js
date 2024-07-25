@@ -20,7 +20,6 @@ function Header() {
                    <>
                    <span> {nickname}님</span> {/* 사용자 ID 표시 */}
                    <Link  to="/login" onClick={handleLogout}>로그아웃</Link>
-                   <Link  to="/signup">회원가입</Link>
                </>
                 ) : (
                     <>
