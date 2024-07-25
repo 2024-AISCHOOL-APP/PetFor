@@ -27,7 +27,7 @@ function Signup() {
             })
             console.log(response.data.success);
             response.data.success
-            ? nav('/')
+            ? nav('/login')
             : nav('/signup')
         } catch(error) {
             console.error(error);
