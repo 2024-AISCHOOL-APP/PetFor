@@ -34,7 +34,7 @@ function Home() {
             <nav className="buttons">
                 <Link to="/register" className="button">등록 업체</Link>
                 <Link to="/community" className="button">커뮤니티</Link>
-                <Link to="/chat" className="button">채팅</Link>
+                <Link to="/chat" className="button"> 채팅 </Link>
             </nav>
             
             <section className="category-container">

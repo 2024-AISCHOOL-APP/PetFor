@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { useNavigate, useParams, Link } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import './CommunityContent.css';
 import axios from '../axios';
 import { AuthContext } from '../AuthContext';
