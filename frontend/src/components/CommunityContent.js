@@ -67,7 +67,7 @@ const CommunityContent = () => {
 
     return (
         <main className="community-content-container">
-            <section className="results-list">
+            <section className="posting-box">
                 <button className="community-method-back-button" onClick={handleBackClick}>←</button>
                 <article className="content-item">
                     <div className='titleBox'>

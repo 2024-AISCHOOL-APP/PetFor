@@ -11,7 +11,7 @@
     
 }
 
-.results-list {
+.posting-box {
     width: 100%;
     max-width: 700px;
     display: flex;
@@ -97,12 +97,7 @@
     margin-right: 27%;
     margin-left: 15px;
     width: 20%;
-<<<<<<< HEAD
 }
 
-=======
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
->>>>>>> ed7c3119f007faf89c19f0b7627ead2920141f9e
 
 
