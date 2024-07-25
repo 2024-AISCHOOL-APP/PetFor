@@ -31,12 +31,18 @@ const SearchResults = () => {
             <section className="results-list">
                 {searches.map((searching, index) => (
                     <article key={index} className="searching-item">
-                        <h2>증상</h2>
-                        <div>{splitString(searching.symptom)}</div>
-                        <h2>원인</h2>
-                        <div>{splitString(searching.cause)}</div>
-                        <h2>해결 방안</h2>
-                        <div>{splitString(searching.solution)}</div>
+                        
+                        <div className='content-container'>
+                            <h2>증상</h2>{splitString(searching.symptom)}
+                        </div>
+                        <div className='content-container'>
+                            <h2>원인</h2>
+                            <div>{splitString(searching.cause)}</div>
+                        </div>
+                        <div className='content-container'>
+                            <h2>해결 방안</h2>
+                            <div>{splitString(searching.solution)}</div>
+                        </div>
                         
                     </article>
                 ))}

@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import './WritePost.css';
+import './Updatepost.css';
 import axios from '../axios';
 import { AuthContext } from '../AuthContext';
 

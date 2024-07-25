@@ -5,7 +5,7 @@
     justify-content: flex-start; /* 위쪽 정렬 */
     padding: 10px; /* 패딩을 줄여서 상하 크기 조정 */
     padding-top: 50px; /* 위쪽에 여백 추가 */
-    background-color: #f9f9f9;
+    /* background-color: #fff9f3 ; */
     height: auto; /* 전체 높이를 내용에 맞게 설정 */
     
     width: 97%;
