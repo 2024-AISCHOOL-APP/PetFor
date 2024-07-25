@@ -16,10 +16,14 @@ import BusinessRegistration from './components/BusinessRegistration'; // Busines
 import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
 import CommunityContent from './components/CommunityContent';
 import Updatepost from './components/Updatepost';
+import Chatting from './components/Chatting';
+import SideImages from './components/SideImages';
+
 import { AuthProvider } from './AuthContext'; // AuthProvider 임포트
 
 import { UserInfo } from './UserInfo'
-import SideImages from './components/SideImages';
+
+import ChatBotButton from './components/ChatBotButton';
 
 const Main = () => {
     const [userId, setUserId] = useState(null);
@@ -47,13 +51,13 @@ const Main = () => {
         <Header />
         
         <Logo />
-        
-
+        <ChatBotButton></ChatBotButton>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/register" element={<Register />} />
         <Route path="/community" element={<Community />} />
         <Route path="/chat" element={<Chat />} />
+        <Route path='/chatting' element={<Chatting />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/writepost" element={<WritePost />} />

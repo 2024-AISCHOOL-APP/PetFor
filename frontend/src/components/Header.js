@@ -3,6 +3,7 @@ import { Link,useNavigate} from 'react-router-dom';
 import './Header.css';
 import { AuthContext } from '../AuthContext';
 
+
 function Header() {
     const { isLoggedIn, nickname, logout } = useContext(AuthContext);
     const navigate = useNavigate();

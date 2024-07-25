@@ -1,7 +1,17 @@
+
+/* src/App.css */
+@font-face {
+  font-family: 'OnGulIp RyuTtung';
+  src: url('../public/fonts/온글잎\ 류뚱체.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  
+}
+
 body {
   margin: 0;
-  font-family: Arial, sans-serif; /* 기본 글씨체 설정 */
-  background-color:  #fff9f3  
+  font-family: 'OnGulIp RyuTtung', sans-serif; /* 기본 글씨체 설정 */
+  background-color: #fff9f3 ;
 }
 
 .App {

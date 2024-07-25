@@ -64,7 +64,7 @@
 
 @media (max-width: 480px) {
     .left-side-image, .right-side-image {
-        width: 40%; 
+        width: 45%; 
         height: calc(100% - 45px);
     }
 }

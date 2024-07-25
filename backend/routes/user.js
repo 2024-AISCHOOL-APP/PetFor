@@ -1,17 +1,18 @@
 const express = require('express');
 const router = express.Router();
 const conn = require('../config/database');
+const md5 = require('md5');
 
 router.post('/handleSignIn', (req, res)=>{
     console.log('SignIn Data', req.body);
     const {userId, userPw} = req.body;
-
+    const hashPw = md5(userPw);
     /*
     conn.query(sql, values, callback)
     */
     const sql = `SELECT user_id, nickname FROM user WHERE user_id=? AND pw=?`;
 
-    conn.query(sql, [userId, userPw], (err, rows)=>{
+    conn.query(sql, [userId, hashPw], (err, rows)=>{
         // console.log(rows);
         if(rows.length>0){
             console.log('로그인 성공');
@@ -30,10 +31,11 @@ router.post('/handleSignIn', (req, res)=>{
 router.post('/handleSignUp', (req, res)=>{
     console.log('SignUp Data', req.body);
     const {userId, userPw, userNickname, userProfile, userType} = req.body;
+    const hashPw = md5(userPw);
 
     const sql = `INSERT INTO user VALUES (?, ?, ?, ?, current_timestamp(), ?)`;
 
-    conn.query(sql, [userId, userPw, userNickname, userType, userProfile], (err, rows)=>{
+    conn.query(sql, [userId, hashPw, userNickname, userType, userProfile], (err, rows)=>{
         if(rows){
             res.json({success : true})
         } else {

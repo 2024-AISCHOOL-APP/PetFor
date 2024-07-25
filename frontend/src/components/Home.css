@@ -1,3 +1,12 @@
+/* src/App.css */
+@font-face {
+    font-family: 'OnGulIp RyuTtung';
+    src: url('../../public/fonts/온글잎\ 류뚱체.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    
+  }
+
 .home {
     padding-top: 50px;
     display: flex;
@@ -9,20 +18,21 @@
     display: flex;
     justify-content: center;
     margin-bottom: 40px;
+    
 }
 /*버튼*/
 .button {
     margin: 0 40px;
-    padding: 20px 30px;
+    padding: 15px 25px;
     background-color: #fff5cc;
     border-radius: 15px;
     text-decoration: none;
     color: hsl(0, 0%, 0%);
-    font-size: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 150px;
+    
+    text-align: center;
+    min-width: 120px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    font-size: 23px;
     
 }
 
@@ -41,6 +51,7 @@
     cursor: pointer;
     color: #000;
     border-radius: 15px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .category-container {
@@ -49,21 +60,23 @@
     align-items: flex-start;
     margin-top: 20px;
     gap: 20px;
+    
 }
 
 .category-box {
     border-radius: 10px;
     text-align: center;
     width: 250px; /* 카테고리 박스의 너비를 지정 */
+    
 }
 
 .category-box-header {
     background-color: #fff;
-    
     padding: 1px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-color: #fff5cc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .category-box-content {
@@ -71,6 +84,7 @@
     background-color: #fff5cc;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
+    
     
     
 }
@@ -82,7 +96,8 @@
     border-radius: 5px;
     border: 1px solid #ccc;
     background-color: #fff;
-    
+    font-family: 'OnGulIp RyuTtung';
+    font-size: 18px;
 }
 
 .selected-category {
@@ -102,3 +117,4 @@
     margin-right: 5px;
     width: 25px;
 }
+

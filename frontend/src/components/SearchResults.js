@@ -31,7 +31,6 @@ const SearchResults = () => {
             <section className="results-list">
                 {searches.map((searching, index) => (
                     <article key={index} className="searching-item">
-                        
                         <div className='content-container'>
                             <h2>증상</h2>{splitString(searching.symptom)}
                         </div>
@@ -47,7 +46,7 @@ const SearchResults = () => {
                     </article>
                 ))}
             </section>
-            <p >추가 정보 필요 시 채팅을 통해 전문가 연결</p>
+            <p className='ps' >추가 정보 필요 시 채팅을 통해 전문가 연결</p>
             <nav className="chat_button">
                 <Link to="/chat" className="button">전문가 채팅 연결</Link>
             </nav>
