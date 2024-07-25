@@ -34,7 +34,7 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    overflow-y: auto;
+    /* overflow-y: auto; */
     
     
 }
@@ -78,4 +78,31 @@ h1 {
 
 .indexNumber{
     margin-left: 15px;
+}
+
+.active,
+.next,
+.pre{
+    padding: 9px 20px;
+    font-size: 16px;
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 30px;
+    /* margin-left: 505px;  */
+    font-family: 'OnGulIp RyuTtung';
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pagination-button{
+    padding: 9px 20px;
+    font-size: 16px;
+    background-color: #fff5cc;
+    border: none;
+    border-radius: 15px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-family: 'OnGulIp RyuTtung';
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }

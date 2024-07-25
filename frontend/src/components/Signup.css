@@ -19,6 +19,7 @@ h1 {
     align-items: center;
     margin-bottom: 15px;
     border: #ccc;
+    
 }
 
 label {
@@ -56,5 +57,10 @@ button[type="button"] {
     margin-top: 20px;
     width: 100%;
     max-width: 500px; /* 제출 버튼도 같은 너비로 설정 */
+    font-family: 'OnGulIp RyuTtung';
+}
+
+#id, #password, #confirmPassword,
+#nickname{
     font-family: 'OnGulIp RyuTtung';
 }
