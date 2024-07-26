@@ -3,8 +3,6 @@ const router = express.Router();
 const conn = require('../config/database');
 
 router.post('/store', (req, res) => {
-    console.log('store data', req.body);
-
     let sql = 'SELECT store_name FROM register WHERE business_number IS NOT NULL';
     conn.query(sql, (err, rows) => {
         if (err) {
@@ -15,12 +13,10 @@ router.post('/store', (req, res) => {
 });
 
 router.post('/business', (req, res) => {
-    console.log('business Data', req.body);
     const { userId, storeName, doctorNumber, businessNumber, registerType } = req.body;
 
     const sql = `SELECT * FROM register WHERE user_id = ?`;
     conn.query(sql, [userId], (err, rows) => {
-        console.log('rows : ', rows);
         if (rows.length > 0) {
             const sql = `SELECT register_type FROM register WHERE user_id = ?`;
             conn.query(sql, [userId], (err, rows) => {
@@ -63,7 +59,6 @@ router.post('/business', (req, res) => {
 });
 
 router.post('/professional', (req, res) => {
-    console.log('professional Data', req.body);
     const { userId, storeName, doctorNumber, businessNumber, registerType } = req.body;
 
     const sql = `SELECT * FROM register WHERE user_id = ?`;

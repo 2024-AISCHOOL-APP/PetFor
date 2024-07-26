@@ -4,7 +4,6 @@ const conn = require('../config/database');
 const md5 = require('md5');
 
 router.post('/handleSignIn', (req, res)=>{
-    console.log('SignIn Data', req.body);
     const {userId, userPw} = req.body;
     const hashPw = md5(userPw);
     /*
@@ -13,9 +12,7 @@ router.post('/handleSignIn', (req, res)=>{
     const sql = `SELECT user_id, nickname FROM user WHERE user_id=? AND pw=?`;
 
     conn.query(sql, [userId, hashPw], (err, rows)=>{
-        // console.log(rows);
         if(rows.length>0){
-            console.log('로그인 성공');
             req.session.user = {
                 id: rows[0].user_id,
                 nickname: rows[0].nickname
@@ -29,7 +26,6 @@ router.post('/handleSignIn', (req, res)=>{
 })
 
 router.post('/handleSignUp', (req, res)=>{
-    console.log('SignUp Data', req.body);
     const {userId, userPw, userNickname, userProfile, userType} = req.body;
     const hashPw = md5(userPw);
 

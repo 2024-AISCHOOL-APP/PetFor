@@ -14,12 +14,24 @@ const chatRouter = require('./routes/chat');
 const app = express();
 const server = http.createServer(app);
 const SocketIO = require('socket.io');
-const io = SocketIO(server, {path: '/socket.io'})
+const io = SocketIO(server, {path: '/socket.io',
+                            cors: {
+                                origin: 'http://localhost:3000',
+                                methods: ['GET', 'POST'],
+                                credential: true
+                            }
+})
 
 app.use(express.static(path.join(__dirname, '..', 'frontend', 'build')));
 app.use(express.json());
 
-app.use(cors());
+const corsOptions = {
+    origin: 'http://localhost:3000', // 클라이언트의 URL을 설정합니다.
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true
+};
+
+app.use(cors(corsOptions));
 
 app.use(session({
     store : new fileStore(),

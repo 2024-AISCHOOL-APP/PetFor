@@ -49,7 +49,7 @@ const CommunityContent = () => {
         axios.delete(`/list/post/${id}`, { data: { userId } })
             .then((response) => {
                 if (response.data.success) {
-                    navigate('/community');
+                    navigate(`/community?page=${sessionStorage.getItem('currentPage') || 1}`);
                 } else {
                     alert('자신의 글만 삭제 가능합니다');
                 }
@@ -81,8 +81,12 @@ const CommunityContent = () => {
                     <div className='content'>{post.content}</div>
                 </article>
                 <div className='changeBox'>
-                    <button className='deleteBtn' onClick={handleDeleteClick}>삭제</button>
-                    <button className='updateBtn' onClick={handleUpdateClick}>수정</button>
+                {post.user_id === userId && (
+                        <>
+                            <button className='deleteBtn' onClick={handleDeleteClick}>삭제</button>
+                            <button className='updateBtn' onClick={handleUpdateClick}>수정</button>
+                        </>
+                    )}
                 </div>
             </section>
         </main>
