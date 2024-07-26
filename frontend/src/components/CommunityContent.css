@@ -43,7 +43,7 @@
     height: 230px ; 
     background-color: #FFFAE4;
     overflow-y: auto;
-    
+    white-space: pre-wrap; /* 줄바꿈을 반영하도록 설정 */
     
 }
 .title{
