@@ -3,12 +3,24 @@ const router = express.Router();
 const conn = require('../config/database');
 
 router.post('/store', (req, res) => {
-    let sql = 'SELECT store_name FROM register WHERE business_number IS NOT NULL';
+    const { page = 1, limit = 6 } = req.body; // 기본값 설정
+    const offset = (page - 1) * limit;
+    
+    let sql = `SELECT store_name FROM register WHERE business_number IS NOT NULL LIMIT ${limit} OFFSET ${offset}`;
     conn.query(sql, (err, rows) => {
         if (err) {
             return res.status(500).send(err);
         }
-        res.json(rows);
+        
+        // 총 개수 조회 쿼리
+        let countSql = 'SELECT COUNT(*) as count FROM register WHERE business_number IS NOT NULL';
+        conn.query(countSql, (err, countResult) => {
+            if (err) {
+                return res.status(500).send(err);
+            }
+            const totalItems = countResult[0].count;
+            res.json({ rows, totalItems });
+        });
     });
 });
 
