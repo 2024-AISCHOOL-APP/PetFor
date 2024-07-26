@@ -1,49 +1,43 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import './Chat.css';
 import axios from '../axios';
+import { AuthContext } from '../AuthContext';
+import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
-    const chattingPeople = [
-        { name: '스트릿패션', imgSrc: '/images/basic.png' },
-        { name: '발레리나', imgSrc: '/images/basic.png' },
-        { name: '트래커', imgSrc: '/images/basic.png' },
-        { name: '디자이너', imgSrc: '/images/basic.png' },
-        { name: '유치원쌤', imgSrc: '/images/basic.png' },
-        { name: '핑키', imgSrc: '/images/basic.png' },
-        { name: '스트릿패션', imgSrc: '/images/basic.png' },
-        { name: '발레리나', imgSrc: '/images/basic.png' },
-        { name: '트래커', imgSrc: '/images/basic.png' },
-        { name: '디자이너', imgSrc: '/images/basic.png' },
-        { name: '유치원쌤', imgSrc: '/images/basic.png' },
-        { name: '핑키', imgSrc: '/images/basic.png' },
-    ];
+    const { userId, isLoggedIn } = useContext(AuthContext);
+    const [chatUsers, setChatUsers] = useState([]);
+    const [nonChatUsers, setNonChatUsers] = useState([]);
+    const nav = useNavigate();
+    const data = { userId : userId };
 
-    const newPeople = [
-        { name: '스트릿패션', imgSrc: '/images/basic.png' },
-        { name: '발레리나', imgSrc: '/images/basic.png' },
-        { name: '트래커', imgSrc: '/images/basic.png' },
-        { name: '디자이너', imgSrc: '/images/basic.png' },
-        { name: '유치원쌤', imgSrc: '/images/basic.png' },
-        { name: '핑키', imgSrc: '/images/basic.png' },
-        { name: '스트릿패션', imgSrc: '/images/basic.png' },
-        { name: '발레리나', imgSrc: '/images/basic.png' },
-        { name: '트래커', imgSrc: '/images/basic.png' },
-        { name: '디자이너', imgSrc: '/images/basic.png' },
-        { name: '유치원쌤', imgSrc: '/images/basic.png' },
-        { name: '핑키', imgSrc: '/images/basic.png' },
-    ];
+    useEffect(() => {
+        if (!isLoggedIn) {
+            nav('/login'); // 로그인하지 않은 경우 로그인 페이지로 이동
+        }
+    }, [isLoggedIn, nav]);
+
+    useEffect(() => {
+        axios.post('/chat/list', data)
+            .then((response) => {
+                const { chatUsers, nonChatUsers } = response.data;
+                setChatUsers(chatUsers);
+                setNonChatUsers(nonChatUsers);
+            })
+            .catch((error) => console.error('Error fetching chat list', error));
+    }, [userId]);
 
     const goChatting = async (e) => {
         try {
             e.preventDefault();
-            const response = await axios.post('/chat/chatting', {userId : 'test'})
-                                        .catch((error)=>console.error('Error fetching chat', error));
-            // console.log(response.data.success);
-            // response.data.success
-            // ? nav('/chatting')
-            // : nav('/chat')
-        } catch(error) {
-            console.error(error);
+            const response = await axios.post('/chat/chatting', data);
+            if (response.data.success) {
+                nav('/chatting');
+            } else {
+                nav('/chat');
+            }
+        } catch (error) {
+            console.error('Error fetching chat', error);
         }
     };
 
@@ -52,10 +46,10 @@ const Chat = () => {
             <section className="chat-section">
                 <h2>채팅 목록</h2>
                 <ul className="chat-list">
-                    {chattingPeople.map((person, index) => (
+                    {chatUsers.map((person, index) => (
                         <li key={index} className="chat-item">
-                            <img src={person.imgSrc} alt={person.name} className="chat-img" />
-                            <span>{person.name}</span>
+                            <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
+                            <span>{person.user.nickname}</span>
                         </li>
                     ))}
                 </ul>
@@ -63,10 +57,10 @@ const Chat = () => {
             <section className="chat-section">
                 <h2>새로운 사람</h2>
                 <ul className="chat-list">
-                    {newPeople.map((person, index) => (
+                    {nonChatUsers.map((person, index) => (
                         <li key={index} className="chat-item">
-                            <img src={person.imgSrc} alt={person.name} className="chat-img" />
-                            <span>{person.name}</span>
+                            <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
+                            <span>{person.user.nickname}</span>
                         </li>
                     ))}
                 </ul>

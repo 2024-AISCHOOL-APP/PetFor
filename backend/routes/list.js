@@ -166,7 +166,12 @@ router.post('/writepost', (req, res) => {
 // 포스트 세부 정보 가져오기
 router.get('/post/:id', (req, res) => {
     const postId = req.params.id;
-    const sql = 'SELECT * FROM community WHERE community_idx = ?';
+    const sql = `
+        SELECT c.community_idx, c.title, c.content, c.user_id, u.nickname
+        FROM community c
+        JOIN user u ON c.user_id = u.user_id
+        WHERE c.community_idx = ?
+    `;
 
     conn.query(sql, [postId], (error, rows) => {
         if (error) {
