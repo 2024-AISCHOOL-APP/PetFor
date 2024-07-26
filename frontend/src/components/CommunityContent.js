@@ -37,9 +37,13 @@ const CommunityContent = () => {
         return <p>Post not found</p>;
     }
 
+
+    
     const handleBackClick = () => {
-        navigate('/community');
+        const previousPage = sessionStorage.getItem('currentPage') || 1;
+        navigate(`/community?page=${previousPage}`);
     };
+
 
     const handleDeleteClick = () => {
         axios.delete(`/list/post/${id}`, { data: { userId } })

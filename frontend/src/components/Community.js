@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import './Community.css';
 import axios from '../axios';
 
 const Community = () => {
     const nav = useNavigate();
+    const location = useLocation(); // 현재 페이지 번호 가져오기
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수를 관리할 상태
@@ -21,7 +22,14 @@ const Community = () => {
     };
     
     useEffect(() => {
-        fetchPosts(page);
+        const query = new URLSearchParams(location.search);
+        const currentPage = parseInt(query.get('page')) || 1;
+        setPage(currentPage);
+        fetchPosts(currentPage);
+    }, [location.search]);
+
+    useEffect(() => {
+        sessionStorage.setItem('currentPage', page);
     }, [page]);
 
     const goWritePost = () => {
@@ -33,7 +41,7 @@ const Community = () => {
     };
 
     const handlePageChange = (newPage) => {
-        setPage(newPage);
+        nav(`/community?page=${newPage}`);
     };
 
     return (
