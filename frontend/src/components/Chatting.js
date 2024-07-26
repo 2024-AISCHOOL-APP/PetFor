@@ -1,12 +1,36 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useContext } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../AuthContext';
 import io from 'socket.io-client';
 import './Chatting.css';
+import axios from '../axios';
 
 const Chatting = () => {
+    const { isLoggedIn } = useContext(AuthContext);
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
+    const nav = useNavigate();
+    const location = useLocation();
+    const { userId, chatIdx } = location.state || {};
 
     useEffect(() => {
+        if (!isLoggedIn) {
+            nav('/login'); // 로그인하지 않은 경우 로그인 페이지로 이동
+        }
+    }, [isLoggedIn, nav]);
+
+    useEffect(() => {
+        const fetchChatHistory = async () => {
+            try {
+                const response = await axios.post('/chat/history', { chatIdx });
+                setMessages(response.data);
+            } catch (error) {
+                console.error('Error fetching chat history', error);
+            }
+        };
+
+        fetchChatHistory();
+
         const socket = io.connect('http://localhost:8000', {
             path: '/socket.io'
             // transports: ['websocket']
@@ -19,7 +43,7 @@ const Chatting = () => {
         return () => {
             socket.disconnect();
         };
-    }, []);
+    }, [chatIdx]);
 
     const handleSend = () => {
         if (message.trim()) {
@@ -27,8 +51,9 @@ const Chatting = () => {
                 path: '/socket.io'
                 // transports: ['websocket']
             });
-            socket.emit('msg', message);
-            setMessages((prevMessages) => [...prevMessages, `You: ${message}`]);
+            const msgData = { chatIdx, userId, message };
+            socket.emit('msg', msgData);
+            setMessages((prevMessages) => [...prevMessages, { userId, message }]);
             setMessage('');
             socket.disconnect();
         }
@@ -45,8 +70,8 @@ const Chatting = () => {
             <h1>Message</h1>
             <div id="chatContent">
                 {messages.map((msg, index) => (
-                    <div key={index} className="msgLine">
-                        <div className="msgBox">{msg}</div>
+                    <div key={index} className={`msgLine ${msg.userId === userId ? 'myMsg' : 'otherMsg'}`}>
+                        <div className="msgBox">{msg.message}</div>
                     </div>
                 ))}
             </div>
