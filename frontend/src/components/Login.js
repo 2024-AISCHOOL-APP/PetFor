@@ -38,6 +38,7 @@ const Login = () => {
                 <fieldset className="input-group">
                     <label htmlFor="loginId">아이디:</label>
                     <input
+                        className='login-input'
                         type="text"
                         id="loginId"
                         placeholder="ID"
@@ -48,6 +49,7 @@ const Login = () => {
                 <fieldset className="input-group">
                     <label htmlFor="loginPw">비밀번호:</label>
                     <input
+                        className='login-input'
                         type="password"
                         id="loginPw"
                         placeholder="Password"

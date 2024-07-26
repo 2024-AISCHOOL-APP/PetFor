@@ -36,7 +36,7 @@ label {
     margin-bottom: 5px;
 }
 
-input {
+.login-input {
     width: 100%;
     padding: 10px;
     font-size: 16px;

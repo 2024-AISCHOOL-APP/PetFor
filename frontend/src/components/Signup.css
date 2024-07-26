@@ -28,8 +28,7 @@ label {
     margin-right: 10px;
     text-align: left; 
 }
-
-input {
+.signup-input{
     flex: 1;
     padding: 10px;
     font-size: 16px;

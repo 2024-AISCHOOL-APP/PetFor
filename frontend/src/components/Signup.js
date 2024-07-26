@@ -80,7 +80,7 @@ function Signup() {
             )}
           <fieldset className="form-group">
             <label htmlFor="password">비밀번호</label>
-            <input type="password" id="password" name="userPw"
+            <input type="password" id="password" name="userPw" className='signup-input'
             //   value={form.userPw}
               onChange={e=>setUserPw(e.target.value)}
               placeholder="비밀번호를 입력하세요."
@@ -88,7 +88,7 @@ function Signup() {
           </fieldset>
           <fieldset className="form-group">
             <label htmlFor="confirmPassword">비밀번호 확인</label>
-            <input type="password" id="confirmPassword" name="confirmPassword"
+            <input type="password" id="confirmPassword" name="confirmPassword" className='signup-input'
             //   value={form.confirmPassword}
               onChange={passwordCheck}
               placeholder="비밀번호를 다시 입력하세요."
