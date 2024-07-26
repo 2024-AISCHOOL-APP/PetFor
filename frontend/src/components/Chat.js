@@ -27,18 +27,8 @@ const Chat = () => {
             .catch((error) => console.error('Error fetching chat list', error));
     }, [userId]);
 
-    const goChatting = async (e) => {
-        try {
-            e.preventDefault();
-            const response = await axios.post('/chat/chatting', data);
-            if (response.data.success) {
-                nav('/chatting');
-            } else {
-                nav('/chat');
-            }
-        } catch (error) {
-            console.error('Error fetching chat', error);
-        }
+    const goChatting = async (chatIdx) => {
+        nav('/chatting', { state: { userId, chatIdx } });
     };
 
     return (
@@ -47,7 +37,7 @@ const Chat = () => {
                 <h2>채팅 목록</h2>
                 <ul className="chat-list">
                     {chatUsers.map((person, index) => (
-                        <li key={index} className="chat-item">
+                        <li key={index} className="chat-item" onClick={()=>{goChatting(person.chat_idx[0])}}>
                             <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
                             <span>{person.user.nickname}</span>
                         </li>

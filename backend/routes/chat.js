@@ -5,7 +5,11 @@ const util = require("util");
 
 router.post("/chatting", (req, res) => {
   console.log(req.body);
-  console.log("chatting");
+  // if (!req.body.userId && !req.body.chatIdx){
+  //   res.json({success : true, data : req.body})
+  // } else {
+  //   res.json({success : false})
+  // }
 });
 
 const query = util.promisify(conn.query).bind(conn);
@@ -19,7 +23,6 @@ router.post("/list", async (req, res) => {
   }
 
   try {
-    // 채팅 리스트 가져오기
     const sqlChatList = `SELECT chat_idx, user_id, receiver FROM chat_list WHERE user_id=? OR receiver=?`;
     const chatListRows = await query(sqlChatList, [userId, userId]);
 
@@ -63,6 +66,24 @@ router.post("/list", async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: "Internal Server Error" });
+  }
+});
+
+// 이전 대화 불러오기
+router.post('/history', async (req, res) => {
+  const { chatIdx } = req.body;
+
+  if (!chatIdx) {
+      return res.status(400).json({ error: 'Chat index is required' });
+  }
+
+  try {
+      const sql = `SELECT * FROM chatting WHERE chat_idx = ? ORDER BY message_date`;
+      const messages = await query(sql, [chatIdx]);
+      res.json(messages);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 
