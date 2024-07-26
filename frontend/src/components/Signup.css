@@ -64,3 +64,22 @@ button[type="button"] {
 #nickname{
     font-family: 'OnGulIp RyuTtung';
 }
+
+.error-message,
+.success-message {
+    font-size: 0.9em;
+    margin-left: 51%;
+}
+
+.error-message {
+    color: red;
+}
+
+.success-message {
+    color: green;
+}
+
+.duplicate{
+    font-family: 'OnGulIp RyuTtung';
+    font-size: 16px;
+}
