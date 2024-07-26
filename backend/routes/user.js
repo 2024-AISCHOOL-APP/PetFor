@@ -45,6 +45,21 @@ router.post('/handleSignUp', (req, res)=>{
     })
 })
 
+//아이디 중복확인
+router.post('/checkDuplicate', (req, res) => {
+    const { userId } = req.body;
+    const sql = `SELECT COUNT(*) as count FROM user WHERE user_id = ?`;
+
+    conn.query(sql, [userId], (err, rows) => {
+        if (err) {
+            console.error('Error checking duplicate ID:', err);
+            return res.status(500).json({ error: 'An error occurred' });
+        }
+        const isDuplicate = rows[0].count > 0;
+        res.json({ isDuplicate });
+    });
+});
+
 // 세션확인 : 로그인 상태 확인
 router.get('/checkSession', (req, res) => {
     if (req.session.user) {
