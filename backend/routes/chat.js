@@ -70,7 +70,7 @@ router.post("/list", async (req, res) => {
 });
 
 // 이전 대화 불러오기
-router.post('/chat/history', async (req, res) => {
+router.post('/history', async (req, res) => {
   const { chatIdx } = req.body;
 
   if (!chatIdx) {
@@ -78,7 +78,7 @@ router.post('/chat/history', async (req, res) => {
   }
 
   try {
-      const sql = `SELECT * FROM messages WHERE chat_idx = ? ORDER BY timestamp`;
+      const sql = `SELECT * FROM chatting WHERE chat_idx = ? ORDER BY message_date`;
       const messages = await query(sql, [chatIdx]);
       res.json(messages);
   } catch (err) {
