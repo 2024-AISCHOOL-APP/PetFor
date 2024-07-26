@@ -8,7 +8,7 @@
     justify-content: center; /* 수직 중앙 정렬 */
     align-items: center; /* 수평 중앙 정렬 */
     height: calc(100vh - 40px); /* 헤더/푸터 여백을 제외한 높이 */
-    background-color: #f8f9fa;
+    background-color: #fff9f3 ;
     padding: 20px;
     box-sizing: border-box;
     overflow-y: auto;
