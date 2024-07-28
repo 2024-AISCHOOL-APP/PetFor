@@ -26,12 +26,12 @@ router.post('/handleSignIn', (req, res)=>{
 })
 
 router.post('/handleSignUp', (req, res)=>{
-    const {userId, userPw, userNickname, userProfile, userType} = req.body;
+    const {userId, userPw, userNickname, userProfile, userType , userLocation} = req.body;
     const hashPw = md5(userPw);
 
-    const sql = `INSERT INTO user VALUES (?, ?, ?, ?, current_timestamp(), ?)`;
+    const sql = `INSERT INTO user VALUES (?, ?, ?, ?, current_timestamp(), ?, ?)`;
 
-    conn.query(sql, [userId, hashPw, userNickname, userType, userProfile], (err, rows)=>{
+    conn.query(sql, [userId, hashPw, userNickname, userType, userProfile , userLocation], (err, rows)=>{
         if(rows){
             res.json({success : true})
         } else {
