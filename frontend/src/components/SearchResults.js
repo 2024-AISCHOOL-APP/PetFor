@@ -48,7 +48,7 @@ const SearchResults = () => {
             </section>
             <p className='ps' >추가 정보 필요 시 채팅을 통해 전문가 연결</p>
             <nav className="chat_button">
-                <Link to="/chat" className="button">전문가 채팅 연결</Link>
+                <Link to="/Register_reco" className="button">전문가 채팅 연결</Link>
             </nav>
         </main>
         
