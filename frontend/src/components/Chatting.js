@@ -76,7 +76,7 @@ const Chatting = () => {
 
     return (
         <div className='chat-container'>
-            <h1>Message</h1>
+            
             <div id="chatContent">
                 {messages.map((msg, index) => (
                     <div key={index} className={`msgLine ${msg.isSender ? 'myMsg' : 'otherMsg'}`}>
@@ -84,14 +84,16 @@ const Chatting = () => {
                     </div>
                 ))}
             </div>
-            <input
-                id="myChat"
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                onKeyUp={handleKeyUp}
-            />
-            <input type="submit" id="send" value="Send" onClick={handleSend} />
+            <div className='chatting-input-box'>
+                <input
+                    id="myChat"
+                    type="text"
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    onKeyUp={handleKeyUp}
+                />
+                <input type="submit" id="send" value="전송" onClick={handleSend} />
+            </div>
         </div>
     );
 };

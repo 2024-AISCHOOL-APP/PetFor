@@ -32,7 +32,7 @@ const Chat = () => {
     };
 
     return (
-        <main className="chat-container">
+        <main className="chatlist-container">
             <section className="chat-section">
                 <h2>채팅 목록</h2>
                 <ul className="chat-list">
@@ -44,6 +44,7 @@ const Chat = () => {
                     ))}
                 </ul>
             </section>
+            
             <section className="chat-section">
                 <h2>새로운 사람</h2>
                 <ul className="chat-list">
@@ -55,9 +56,7 @@ const Chat = () => {
                     ))}
                 </ul>
             </section>
-            <form action='/chatting' onSubmit={goChatting}>
-                <button type='submit' className='chatting-go'>채팅</button>
-            </form>
+            
         </main>
     );
 };
