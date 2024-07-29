@@ -25,7 +25,8 @@ router.post('/store', (req, res) => {
 });
 
 router.post('/business', (req, res) => {
-    const { userId, storeName, doctorNumber, businessNumber, registerType } = req.body;
+    const { userId, storeName, doctorNumber, businessNumber, registerType, is24Hour, averageCost, location } = req.body;
+    const is24HourValue = is24Hour === 'yes' ? 1 : 0;
 
     const sql = `SELECT * FROM register WHERE user_id = ?`;
     conn.query(sql, [userId], (err, rows) => {
@@ -34,8 +35,8 @@ router.post('/business', (req, res) => {
             conn.query(sql, [userId], (err, rows) => {
                 const register_type = rows[0].register_type;
                 if (register_type === 'B') {
-                    const sql = `UPDATE register SET business_number = ?, store_name = ? WHERE user_id = ?`;
-                    conn.query(sql, [businessNumber, storeName, userId], (err, rows) => {
+                    const sql = `UPDATE register SET business_number = ?, store_name = ?, 24hour_open = ?, average_price = ?, location = ? WHERE user_id = ?`;
+                    conn.query(sql, [businessNumber, storeName, is24HourValue, averageCost, location, userId], (err, rows) => {
                         if (rows) {
                             res.json({ success: true });
                         } else {
@@ -44,8 +45,8 @@ router.post('/business', (req, res) => {
                         }
                     });
                 } else {
-                    const sql = `UPDATE register SET register_type = 'C', business_number = ? WHERE user_id = ?`;
-                    conn.query(sql, [businessNumber, userId], (err, rows) => {
+                    const sql = `UPDATE register SET register_type = 'C', business_number = ?, 24hour_open = ?, average_price = ?, location = ? WHERE user_id = ?`;
+                    conn.query(sql, [businessNumber, is24HourValue, averageCost, location, userId], (err, rows) => {
                         if (rows) {
                             res.json({ success: true });
                         } else {
@@ -56,9 +57,9 @@ router.post('/business', (req, res) => {
                 }
             });
         } else {
-            const sql = `INSERT INTO register(user_id, store_name, business_number, register_type, register_date) VALUES (?, ?, ?, 'B', current_timestamp())`;
+            const sql = `INSERT INTO register(user_id, store_name, business_number, register_type, 24hour_open, average_price, location, register_date) VALUES (?, ?, ?, 'B', ?, ?, ?, current_timestamp())`;
 
-            conn.query(sql, [userId, storeName, businessNumber], (err, rows) => {
+            conn.query(sql, [userId, storeName, businessNumber, is24HourValue, averageCost, location], (err, rows) => {
                 if (rows) {
                     res.json({ success: true });
                 } else {
@@ -116,7 +117,7 @@ router.post('/professional', (req, res) => {
     });
 });
 
-//글 목록 가져오기 (페이지네이션 적용) 및 닉네임 나오게하기
+// 글 목록 가져오기 (페이지네이션 적용) 및 닉네임 나오게 하기
 // 총 게시글 수를 반환
 router.post('/post', async (req, res) => {
     const { page = 1, limit = 6 } = req.body;
@@ -156,8 +157,6 @@ router.post('/post', async (req, res) => {
         res.status(500).send('서버 내부 오류');
     }
 });
-
-
 
 router.post('/writepost', (req, res) => {
     let sql = `INSERT INTO community (user_id, title, content, posting_date) VALUES (?, ?, ?, current_timestamp())`;
