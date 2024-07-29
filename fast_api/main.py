@@ -5,6 +5,8 @@ from transformers import AutoTokenizer
 from fastapi.middleware.cors import CORSMiddleware
 import uvicorn
 
+## 모델명 : MLP-KTLim/llama-3-Korean-Bllossom-8B-gguf-Q4_K_M
+
 app = FastAPI()
 
 orig_backends = [
