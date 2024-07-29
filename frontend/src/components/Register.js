@@ -86,7 +86,7 @@ const Register = () => {
                     disabled={pageGroup === 0}
                     className='pre'
                 >
-                    Previous
+                    이전
                 </button>
                 {renderPageButtons()}
                 <button
@@ -95,7 +95,7 @@ const Register = () => {
                     className='next'
                 >
                     
-                    Next
+                    다음
                 </button>
             </section>
             
