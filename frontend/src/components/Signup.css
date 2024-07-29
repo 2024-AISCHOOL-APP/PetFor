@@ -82,3 +82,13 @@ button[type="button"] {
     font-family: 'OnGulIp RyuTtung';
     font-size: 16px;
 }
+
+.signup-location-select{
+    border-radius: 15px;
+    padding: 10px;
+    flex: 1 1;
+    text-align: center;
+    font-family: 'OnGulIp RyuTtung', sans-serif;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}

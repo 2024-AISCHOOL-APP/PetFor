@@ -56,6 +56,7 @@ function Signup() {
                 <fieldset className="form-group">
                     <label htmlFor="id">아이디</label>
                     <input
+                        className='signup-id-input'
                         type="text"
                         id="id"
                         name="userId"
@@ -117,6 +118,7 @@ function Signup() {
                 <fieldset className="form-group">
                     <label htmlFor="location">지역</label>
                     <select
+                        className='signup-location-select'
                         id="location"
                         name="userLocation"
                         value={userLocation}
