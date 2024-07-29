@@ -9,6 +9,9 @@ const Community = () => {
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수를 관리할 상태
+    const [pageGroup, setPageGroup] = useState(0);
+    const buttonsPerGroup = 10;
+    
 
     const fetchPosts = async (page) => {
         try {
@@ -26,6 +29,7 @@ const Community = () => {
         const currentPage = parseInt(query.get('page')) || 1;
         setPage(currentPage);
         fetchPosts(currentPage);
+        setPageGroup(Math.floor((currentPage - 1) / buttonsPerGroup)); // 페이지 그룹 업데이트
     }, [location.search]);
 
     useEffect(() => {
@@ -42,6 +46,36 @@ const Community = () => {
 
     const handlePageChange = (newPage) => {
         nav(`/community?page=${newPage}`);
+    };
+
+    const handleNextGroup = () => {
+        if ((pageGroup + 1) * buttonsPerGroup < totalPages) {
+            setPageGroup(pageGroup + 1);
+        }
+    };
+
+    const handlePrevGroup = () => {
+        if (pageGroup > 0) {
+            setPageGroup(pageGroup - 1);
+        }
+    };
+
+    const renderPageButtons = () => {
+        const startPage = pageGroup * buttonsPerGroup + 1;
+        const endPage = Math.min(startPage + buttonsPerGroup - 1, totalPages);
+        const pageButtons = [];
+        for (let i = startPage; i <= endPage; i++) {
+            pageButtons.push(
+                <button
+                    key={i}
+                    onClick={() => handlePageChange(i)}
+                    className={`pagination-button ${i === page ? 'active' : ''}`}
+                >
+                    {i}
+                </button>    
+            );
+        }
+        return pageButtons;
     };
 
     return (
@@ -62,24 +96,16 @@ const Community = () => {
             </section>
             <section className="pagination">
                 <button
-                    onClick={() => handlePageChange(page - 1)}
-                    disabled={page === 1}
+                    onClick={handlePrevGroup}
+                    disabled={pageGroup === 0}
                     className='pre'
                 >
                     Previous
                 </button>
-                {Array.from({ length: totalPages }, (_, index) => (
-                    <button
-                        key={index}
-                        className= {`pagination-button ${index + 1 === page ? 'active' : ''}`}
-                        onClick={() => handlePageChange(index + 1)}
-                    >
-                        {index + 1}
-                    </button>
-                ))}
+                {renderPageButtons()}
                 <button
-                    onClick={() => handlePageChange(page + 1)}
-                    disabled={page === totalPages}
+                    onClick={handleNextGroup}
+                    disabled={(pageGroup + 1) * buttonsPerGroup >= totalPages}
                     className='next'
                 >
                     Next
