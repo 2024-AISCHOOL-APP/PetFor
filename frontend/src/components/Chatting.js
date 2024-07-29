@@ -6,23 +6,24 @@ import './Chatting.css';
 import axios from '../axios';
 
 const Chatting = () => {
-    const { isLoggedIn } = useContext(AuthContext);
+    const { isLoggedIn, userId: currentUserId } = useContext(AuthContext);
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState('');
     const nav = useNavigate();
     const location = useLocation();
-    const { userId, chatIdx } = location.state || {};
+    const { senderId, receiverId, chatIdx } = location.state || {};
+    const [socket, setSocket] = useState(null);
 
     useEffect(() => {
         if (!isLoggedIn) {
-            nav('/login'); // 로그인하지 않은 경우 로그인 페이지로 이동
+            nav('/login');
         }
     }, [isLoggedIn, nav]);
 
     useEffect(() => {
         const fetchChatHistory = async () => {
             try {
-                const response = await axios.post('/chat/history', { chatIdx });
+                const response = await axios.post('/chat/history', { chatIdx, userId: senderId });
                 setMessages(response.data);
             } catch (error) {
                 console.error('Error fetching chat history', error);
@@ -31,31 +32,39 @@ const Chatting = () => {
 
         fetchChatHistory();
 
-        const socket = io.connect('http://localhost:8000', {
-            path: '/socket.io'
-            // transports: ['websocket']
+        const newSocket  = io('http://localhost:8000', {
+            path: '/socket.io',
+            transports: ['websocket']
         });
 
-        socket.on('msg', (data) => {
-            setMessages((prevMessages) => [...prevMessages, data]);
+        newSocket.on('msg', (data) => {
+            if (data.senderId !== currentUserId) {
+                setMessages((prevMessages) => [...prevMessages, data]);
+            }
         });
+        setSocket(newSocket);
 
         return () => {
-            socket.disconnect();
+            newSocket.disconnect();
         };
-    }, [chatIdx]);
+    }, [chatIdx, senderId]);
 
-    const handleSend = () => {
-        if (message.trim()) {
-            const socket = io.connect('http://localhost:8000', {
-                path: '/socket.io'
-                // transports: ['websocket']
-            });
-            const msgData = { chatIdx, userId, message };
-            socket.emit('msg', msgData);
-            setMessages((prevMessages) => [...prevMessages, { userId, message }]);
-            setMessage('');
-            socket.disconnect();
+    const handleSend = async () => {
+        if (message.trim() && socket) {
+            const msgData = { chatIdx, senderId, receiverId, message };
+            try {
+                await axios.post('/chat/send', msgData);
+                const formattedMsg = {
+                    ...msgData,
+                    isSender: true,
+                    message_date: new Date()
+                };
+                socket.emit('msg', formattedMsg);
+                setMessages((prevMessages) => [...prevMessages, formattedMsg]);
+                setMessage('');
+            } catch(error) {
+                console.error('Error sending message', error);
+            }
         }
     };
 
@@ -70,7 +79,7 @@ const Chatting = () => {
             <h1>Message</h1>
             <div id="chatContent">
                 {messages.map((msg, index) => (
-                    <div key={index} className={`msgLine ${msg.userId === userId ? 'myMsg' : 'otherMsg'}`}>
+                    <div key={index} className={`msgLine ${msg.isSender ? 'myMsg' : 'otherMsg'}`}>
                         <div className="msgBox">{msg.message}</div>
                     </div>
                 ))}

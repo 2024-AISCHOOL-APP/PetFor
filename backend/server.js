@@ -18,6 +18,7 @@ const io = SocketIO(server, {path: '/socket.io',
                             cors: {
                                 origin: 'http://localhost:3000',
                                 methods: ['GET', 'POST'],
+                                allowedHeaders: ['my-custom-header'],
                                 credential: true
                             }
 })
@@ -58,13 +59,21 @@ server.listen(app.get('port'), ()=>{
 
 // Socket.IO 이벤트 처리
 io.on('connection', (socket)=>{
-    console.log(socket.id, 'connected...');
+    // console.log(socket.id, 'connected...');
 
-    io.emit('msg', `${socket.id} has entered the chatroom.`);
+    // io.emit('msg', `${socket.id} has entered the chatroom.`);
 
     socket.on('msg', (data)=>{
-        console.log(socket.id, ': ', data);
-        socket.broadcast.emit('msg', `${socket.id}: ${data}`);
+        const messageData = {
+            chatIdx: data.chatIdx,
+            senderId: data.senderId,
+            receiverId: data.receiverId,
+            message: data.message,
+            isSender: false,
+            message_date: new Date()
+        };
+        // socket.broadcast.emit('msg', `${socket.id}: ${data}`);
+        io.emit('msg', messageData);
     });
 
     socket.on('disconnect', (data)=>{

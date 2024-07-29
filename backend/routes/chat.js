@@ -3,15 +3,6 @@ const router = express.Router();
 const conn = require("../config/database");
 const util = require("util");
 
-router.post("/chatting", (req, res) => {
-  console.log(req.body);
-  // if (!req.body.userId && !req.body.chatIdx){
-  //   res.json({success : true, data : req.body})
-  // } else {
-  //   res.json({success : false})
-  // }
-});
-
 const query = util.promisify(conn.query).bind(conn);
 
 // 채팅 리스트 불러오기
@@ -71,16 +62,39 @@ router.post("/list", async (req, res) => {
 
 // 이전 대화 불러오기
 router.post('/history', async (req, res) => {
-  const { chatIdx } = req.body;
+  const { chatIdx, userId } = req.body;
 
-  if (!chatIdx) {
-      return res.status(400).json({ error: 'Chat index is required' });
+  if (!chatIdx || !userId) {
+      return res.status(400).json({ error: 'Chat index and user ID are required' });
   }
-
   try {
       const sql = `SELECT * FROM chatting WHERE chat_idx = ? ORDER BY message_date`;
       const messages = await query(sql, [chatIdx]);
-      res.json(messages);
+
+      const formattedMessages = messages.map(msg => ({
+        ...msg,
+        isSender: msg.sender_id === userId
+      }));
+      res.json(formattedMessages);
+  } catch (err) {
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+
+// 메시지 저장
+router.post('/send', async (req, res) => {
+  const { chatIdx, senderId, receiverId, message } = req.body;
+
+  if (!chatIdx || !senderId || !receiverId || !message) {
+      return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+      const sql = `INSERT INTO chatting (chat_idx, sender_id, receiver_id, message, message_date) VALUES (?, ?, ?, ?, NOW())`;
+      await query(sql, [chatIdx, senderId, receiverId, message]);
+      res.json({ success: true });
   } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
