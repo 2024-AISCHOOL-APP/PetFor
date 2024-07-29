@@ -5,99 +5,85 @@
 .chat-container {
     display: flex;
     flex-direction: column;
-    justify-content: center; /* 수직 중앙 정렬 */
     align-items: center; /* 수평 중앙 정렬 */
-    height: calc(100vh - 40px); /* 헤더/푸터 여백을 제외한 높이 */
-    background-color: #fff9f3 ;
+    height: 60vh; /* 전체 화면 높이로 설정 */
+    background-color: #fff9f3;
     padding: 20px;
     box-sizing: border-box;
-    overflow-y: auto;
+    position: relative; /* 입력 박스를 고정하기 위해 상대 위치 설정 */
 }
 
 .msgLine {
     display: flex;
-    margin-bottom: 10px;
+    margin-bottom: 3px;
+    width: 100%; /* 전체 너비 사용 */
 }
 
 .msgBox {
     border: 1px solid black;
     background: rgb(209, 168, 255);
     color: black;
-    padding: 2px 5px;
+    max-width: 90%; /* 최대 너비를 90%로 설정 */
+    overflow-wrap: break-word;
+    white-space: pre-wrap; /* 줄 바꿈을 유지하면서 길이가 길어질 경우 자동으로 줄 바꿈 처리 */
+    padding: 10px; /* 패딩 추가 */
     border-radius: 10px;
-    max-width: 70%;
-    word-wrap: break-word;
+    box-sizing: border-box; /* 패딩 포함 박스 크기 계산 */
 }
 
 /* 자신의 메시지 스타일 */
+.myMsg {
+    justify-content: flex-end;
+}
+
 .myMsg .msgBox {
-    background-color: #daf8cb;
-    align-self: flex-end;
-    padding: 10px;
-    border-radius: 10px;
+    background-color: #fff5cc;
 }
 
 /* 다른 사람의 메시지 스타일 */
+.otherMsg {
+    justify-content: flex-start;
+}
+
 .otherMsg .msgBox {
     background-color: #f1f0f0;
-    align-self: flex-start;
-    padding: 10px;
-    border-radius: 10px;
 }
 
 #chatContent {
-    /* border: 1px solid #000;
-    width: 100%;
-    height: 200px;
-    margin-bottom: 10px;
-    overflow-y: auto; */
     display: flex;
     flex-direction: column;
     gap: 10px; /* 메시지 간 간격 */
     padding: 10px;
-    height: 100%;
     overflow-y: auto;
-}
-/* 
-#myChat {
-    width: 100%;
-}
-
-#msg, #myChat {
-    width: 80%;
-    height: 32px;
-    border-radius: 8px;
+    width: 40%;
+    height: calc(100% - 80px); /* 입력 박스를 제외한 높이 설정 */
+    box-sizing: border-box; /* 패딩 포함 박스 크기 계산 */
 }
 
-#send {
-    width: 16%;
-    height: 34px;
-    border-radius: 50px;
-    background: black;
-    color: white;
-} */
-
-/* 입력창 및 버튼 스타일 */
 input[type="text"] {
-    width: calc(100% - 110px);
+    
     padding: 10px;
     border: 1px solid #ddd;
-    border-radius: 5px;
+    border-radius: 15px;
+    font-family: 'OnGulIp RyuTtung', sans-serif;
+    font-size: 16px;
 }
 
 input[type="submit"] {
-    width: 100px;
-    padding: 10px;
+    width: 15%;
+    padding: 7px;
     border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: white;
+    border-radius: 15px;
+    background-color: #fff5cc;
+    color: black;
     cursor: pointer;
     margin-left: 10px;
+    font-family: 'OnGulIp RyuTtung', sans-serif;
+    font-size: 25px;
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #fff5cc;
 }
 
 /* 모바일 화면 대응 */
@@ -108,4 +94,20 @@ input[type="submit"]:hover {
     input[type="submit"] {
         width: 80px;
     }
+}
+
+.chatting-input-box {
+    display: flex;
+    align-items: center;
+    width: 40%;
+    position: absolute;
+    bottom: 0; /* 화면 하단에 고정 */
+    padding: 10px;
+    background-color: #fff9f3; /* 배경색 추가 */
+    margin-left: 0%;
+    margin-right: 0%;
+}
+
+#myChat{
+    width: 82%;
 }
