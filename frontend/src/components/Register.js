@@ -8,6 +8,8 @@ const Register = () => {
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1);
     const itemsPerPage = 6; // 페이지당 항목 수를 6으로 설정
+    const [pageGroup, setPageGroup] = useState(0); // 페이지 그룹을 관리할 상태 추가
+    const buttonsPerGroup = 10; // 한 페이지 그룹당 버튼 수를 10으로 설정
 
     useEffect(() => {
         const fetchBusinesses = async () => {
@@ -34,6 +36,37 @@ const Register = () => {
 
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
+        setPageGroup(Math.floor((pageNumber - 1) / buttonsPerGroup)); // 페이지 그룹을 업데이트
+    };
+
+    const handleNextGroup = () => {
+        if ((pageGroup + 1) * buttonsPerGroup < totalPages) {
+            setPageGroup(pageGroup + 1);
+        }
+    };
+
+    const handlePrevGroup = () => {
+        if (pageGroup > 0) {
+            setPageGroup(pageGroup - 1);
+        }
+    };
+
+    const renderPageButtons = () => {
+        const startPage = pageGroup * buttonsPerGroup + 1;
+        const endPage = Math.min(startPage + buttonsPerGroup - 1, totalPages);
+        const pageButtons = [];
+        for (let i = startPage; i <= endPage; i++) {
+            pageButtons.push(
+                <button
+                    key={i}
+                    onClick={() => handlePageChange(i)}
+                    className={`pagination-button2 ${i === currentPage ? 'active' : ''}`}
+                >
+                    {i}
+                </button>
+            );
+        }
+        return pageButtons;
     };
 
     return (
@@ -42,34 +75,27 @@ const Register = () => {
             <section className="business-list">
                 {businesses.map((business, index) => (
                     <article key={index} className="business-item">
-                        {business.store_name}
+                        <p className='indexNumber'>{index + 1 + (currentPage - 1) * itemsPerPage}</p>
+                        <h3 className="business-name">{business.store_name}</h3>
                     </article>
                 ))}
             </section>
             <section className="pagination">
-            <button
-                    onClick={() => handlePageChange(currentPage - 1)}
-                    disabled={currentPage === 1}
+                <button
+                    onClick={handlePrevGroup}
+                    disabled={pageGroup === 0}
                     className='pre'
                 >
-                    Previous
+                    이전
                 </button>
-                {[...Array(totalPages)].map((_, index) => (
-                    <button
-                        key={index}
-                        onClick={() => handlePageChange(index + 1)}
-                        className={`pagination-button2 ${index + 1 === currentPage ? 'active' : ''}`}
-                    >
-                        {index + 1}
-                    </button>
-                    
-                ))}
+                {renderPageButtons()}
                 <button
-                    onClick={() => handlePageChange(currentPage + 1)}
-                    disabled={currentPage === totalPages}
+                    onClick={handleNextGroup}
+                    disabled={(pageGroup + 1 * buttonsPerGroup >= totalPages)}
                     className='next'
                 >
-                    Next
+                    
+                    다음
                 </button>
             </section>
             
