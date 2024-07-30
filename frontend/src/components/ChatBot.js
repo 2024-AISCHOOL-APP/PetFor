@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import axios from '../axios';
 import './ChatBot.css';
 
@@ -7,6 +7,7 @@ const ChatBot = () => {
   const [queries, setQueries] = useState([]); // 추가: queries 상태
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const chatbotBodyRef = useRef(null);
 
   const handleSearch = async (currentQuery) => {
     setLoading(true);
@@ -30,10 +31,16 @@ const ChatBot = () => {
     }
   };
 
+  useEffect(() => {
+    if (chatbotBodyRef.current) {
+      chatbotBodyRef.current.scrollTop = chatbotBodyRef.current.scrollHeight;
+    }
+  }, [queries]);
+
   return (
     <div className="chatbot">
       <div className="chatbot-header">펫포 쳇봇</div>
-      <div className="chatbot-body">
+      <div className="chatbot-body" ref={chatbotBodyRef}>
         <form className="chatbot-box" onSubmit={handleSubmit}>
           {queries.map((item, index) => (
             <div key={index} className="chatbot-response">
@@ -43,16 +50,17 @@ const ChatBot = () => {
               <p dangerouslySetInnerHTML={{ __html: item.response }}></p>
             </div>
           ))}
-           {loading && <h4>검색 중...잠시만 기다려주세요</h4>}
-           {error && <p className="error">{error}</p>}
-          <input
+          {loading && <h4 className='wait'>검색 중...잠시만 기다려주세요</h4>}
+          {error && <p className="error">{error}</p>}
+          
+        </form>
+        <input
             className="chatbotInput"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="질문을 입력하세요..."
           />
           <input type="submit" className="chatbotSubmit" value="전송" disabled={loading} />
-        </form>
       </div>
     </div>
   );

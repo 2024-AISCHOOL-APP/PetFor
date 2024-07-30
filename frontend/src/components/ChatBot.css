@@ -16,8 +16,10 @@
     background: #fff5cc;
     color: black;
     padding: 10px;
+    border-radius: 0px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
+
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -29,21 +31,47 @@
 }
 
 .chatbotInput{
-    width: 72%;
+    width: 75%; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     font-family: 'OnGulIp RyuTtung';
+    position: absolute;
+    bottom: 5%; 
 }
 
 .chatbotSubmit{
-    height: 100%;
+    
     width: 20%;
-    padding: 10px;
+    
     background-color: #fff5cc;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     font-family: 'OnGulIp RyuTtung';
-    font-size: 18px;
+    font-size: 10px;
+    position: absolute;
+    bottom: 2%; 
+    right: 2%;
+}
+.chatbot-box {
+    width: 100%; 
+    padding: 5px;
+    background-color: white; 
+    
+    border-radius: 0px; 
+    height: 90%;
+    
+    overflow-y: hidden; 
+
+    position: absolute;
+    bottom: 0; 
+    left: 50%; 
+    transform: translateX(-50%);
 }
 
-/* .chatbot-box{
-    margin-top: 90%;
-} */
+.wait{
+    margin: 0px;
+}
+
+.chatbot-response{
+    overflow-y: auto;
+    max-height: 75%;
+}
+
