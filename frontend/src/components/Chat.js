@@ -31,6 +31,17 @@ const Chat = () => {
         nav('/chatting', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: person.chat_idx[0] } });
     };
 
+    const newChatting = async (person) => {
+        const newChatData = {
+            userId: userId,
+            receiver : person.user.user_id
+        }
+        const response = await axios.post('/chat/newChatting', newChatData)
+        if (response.data.success){
+            nav('/chatting', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: response.data.chatIdx } });
+        }
+    };
+
     return (
         <main className="chatlist-container">
             <section className="chat-section">
@@ -49,7 +60,7 @@ const Chat = () => {
                 <h2>새로운 사람</h2>
                 <ul className="chat-list">
                     {nonChatUsers.map((person, index) => (
-                        <li key={index} className="chat-item">
+                        <li key={index} className="chat-item" onClick={()=>{newChatting(person)}}>
                             <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
                             <span>{person.user.nickname}</span>
                         </li>

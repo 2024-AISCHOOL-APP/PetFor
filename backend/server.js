@@ -59,10 +59,6 @@ server.listen(app.get('port'), ()=>{
 
 // Socket.IO 이벤트 처리
 io.on('connection', (socket)=>{
-    // console.log(socket.id, 'connected...');
-
-    // io.emit('msg', `${socket.id} has entered the chatroom.`);
-
     socket.on('msg', (data)=>{
         const messageData = {
             chatIdx: data.chatIdx,
@@ -72,12 +68,11 @@ io.on('connection', (socket)=>{
             isSender: false,
             message_date: new Date()
         };
-        // socket.broadcast.emit('msg', `${socket.id}: ${data}`);
         io.emit('msg', messageData);
     });
 
-    socket.on('disconnect', (data)=>{
-        io.emit('msg', `${socket.id} has left the chatroom.`);
-    });
+    // socket.on('disconnect', (data)=>{
+    //     io.emit('msg', `${socket.id} has left the chatroom.`);
+    // });
 });
 
