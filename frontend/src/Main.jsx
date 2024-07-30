@@ -18,6 +18,9 @@ import CommunityContent from './components/CommunityContent';
 import Updatepost from './components/Updatepost';
 import Chatting from './components/Chatting';
 import SideImages from './components/SideImages';
+import Register_reco from './components/Register_reco';
+
+
 
 import { AuthProvider } from './AuthContext'; // AuthProvider 임포트
 
@@ -67,6 +70,8 @@ const Main = () => {
         <Route path="/professional-certification" element={<ProfessionalCertification />} />
         <Route path="/community-content/:id" element={<CommunityContent />} />
         <Route path="/Updatepost/:id" element={<Updatepost />} />
+        <Route path="/Register_reco" element={<Register_reco />} />
+        
       </Routes>
     </UserInfo.Provider>
     </AuthProvider>
