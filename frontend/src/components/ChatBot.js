@@ -35,8 +35,6 @@ const ChatBot = () => {
       <div className="chatbot-header">펫포 쳇봇</div>
       <div className="chatbot-body">
         <form className="chatbot-box" onSubmit={handleSubmit}>
-          {loading && <p>검색 중...잠시만 기다려주세요</p>}
-          {error && <p className="error">{error}</p>}
           {queries.map((item, index) => (
             <div key={index} className="chatbot-response">
               <h2>질문:</h2>
@@ -45,6 +43,8 @@ const ChatBot = () => {
               <p dangerouslySetInnerHTML={{ __html: item.response }}></p>
             </div>
           ))}
+           {loading && <h4>검색 중...잠시만 기다려주세요</h4>}
+           {error && <p className="error">{error}</p>}
           <input
             className="chatbotInput"
             value={query}

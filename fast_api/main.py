@@ -37,7 +37,9 @@ model = Llama(
 )
 
 PROMPT = '''당신은 유용한 AI 어시스턴트입니다. 사용자의 질의에 대해 친절하고 정확하게 답변해야 합니다.
-    You are a helpful AI assistant, you'll need to answer users' queries in a friendly and accurate manner.'''
+    You are a helpful AI assistant, you'll need to answer users' queries in a friendly and accurate manner.
+    너무 길지 않게 그리고 빠르게 답변해야 합니다.
+    You should make answer fast.'''
 
 def extract_text_from_response(response):
     if isinstance(response, dict) and 'choices' in response:
