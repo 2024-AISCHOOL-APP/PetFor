@@ -9,16 +9,18 @@ const Community = () => {
     const [posts, setPosts] = useState([]);
     const [page, setPage] = useState(1);
     const [totalPages, setTotalPages] = useState(1); // 총 페이지 수를 관리할 상태
+    const [totalPosts, setTotalPosts] = useState(0); // 총 게시글 수를 관리할 상태
     const [pageGroup, setPageGroup] = useState(0);
     const buttonsPerGroup = 10;
-    
+    const postsPerPage = 6; // 페이지 당 게시물 수
 
     const fetchPosts = async (page) => {
         try {
             const response = await axios.post('/list/post', { page });
             const { posts, totalPosts } = response.data; // 서버에서 받은 데이터
             setPosts(posts); // 게시글 목록 업데이트
-            setTotalPages(Math.ceil(totalPosts / 6)); // 총 페이지 수 계산
+            setTotalPosts(totalPosts);
+            setTotalPages(Math.ceil(totalPosts / postsPerPage)); // 총 페이지 수 계산
         } catch (error) {
             console.error('Error fetching post', error);
         }
@@ -82,17 +84,19 @@ const Community = () => {
         <main className="community-container">
             <button className="write-post-button" onClick={goWritePost}>글 쓰기</button>
             <section className="posts">
-                {posts.map((post) => (
-                    <article 
-                        key={post.community_idx} 
-                        className="post"
-                        onClick={() => goToPost(post.community_idx)}
-                    >
-                        <p className='indexNumber'>{post.community_idx}</p>
-                        <h3 className="post-title">{post.title}</h3>
-                        <p className="post-author">{post.nickname}</p>
-                    </article>
-                ))}
+                {posts.map((post, index) => {
+                    const displayIdx = totalPosts - ((page - 1) * postsPerPage + index);
+                    return (
+                        <article 
+                            key={post.community_idx} 
+                            className="post"
+                            onClick={() => goToPost(post.community_idx)}
+                        >
+                            <p className='indexNumber'>{displayIdx}</p>
+                            <h3 className="post-title">{post.title}</h3>
+                            <p className="post-author">{post.nickname}</p>
+                        </article>
+                    )})}
             </section>
             <section className="pagination">
                 <button
