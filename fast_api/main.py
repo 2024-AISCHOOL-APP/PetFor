@@ -12,6 +12,7 @@ from sklearn.metrics.pairwise import linear_kernel
 from surprise import Dataset, Reader, SVD
 from surprise.model_selection import train_test_split
 from sklearn.preprocessing import MinMaxScaler
+from config import DB_CONFIG
 
 ## 모델명 : MLP-KTLim/llama-3-Korean-Bllossom-8B-gguf-Q4_K_M
 
@@ -122,11 +123,11 @@ async def get_recommendations(request: Request):
     print("User ID:", user_id)
 
     conn = mysql.connector.connect(
-        host='project-db-stu3.smhrd.com',
-        user='Insa5_App_hacksim_5',
-        password='aischool5',
-        database='Insa5_App_hacksim_5',
-        port=3307
+        host=DB_CONFIG['host'],
+        user=DB_CONFIG['user'],
+        password=DB_CONFIG['password'],
+        database=DB_CONFIG['database'],
+        port=DB_CONFIG['port']
     )
 
     cursor = conn.cursor()
@@ -181,7 +182,7 @@ async def get_recommendations(request: Request):
         df['cf_score'] = df.index.map(lambda x: model_cf.predict(user_id, x % len(df_ratings)).est)
         df['hybrid_score'] = df['final_score'] + df['content_score'] + df['cf_score']
         recommended_stores = df.nlargest(top_n, 'hybrid_score')
-        return recommended_stores[['store_name', 'location', 'average_price', '24hour_open', 'hybrid_score']]
+        return recommended_stores[['user_id', 'store_name', 'location', 'average_price', '24hour_open', 'hybrid_score']]
 
     recommended_stores = hybrid_recommendations(user_id, filtered_df, cosine_sim, model_cf)
     print("Recommended Stores:", json.dumps(recommended_stores.to_dict(orient='records'), indent=4))

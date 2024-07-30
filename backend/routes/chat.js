@@ -105,11 +105,11 @@ router.post('/send', async (req, res) => {
 });
 
 // 새 채팅방 추가
-router.post('/newChatting', async (req, res) => {
+router.post("/newChatting", async (req, res) => {
   const { userId, receiver } = req.body;
 
   if (!userId || !receiver) {
-    return res.status(400).json({ error: 'All fields are required' });
+    return res.status(400).json({ error: "All fields are required" });
   }
 
   try {
@@ -118,26 +118,26 @@ router.post('/newChatting', async (req, res) => {
 
     try {
       const sql = `SELECT chat_idx FROM chat_list WHERE user_id = ? AND receiver = ?`;
-      const chatIdxResult  = await query(sql, [userId, receiver]);
+      const chatIdxResult = await query(sql, [userId, receiver]);
       const chatIdx = chatIdxResult[0].chat_idx;
 
       try {
         const sql = `INSERT INTO chatting (chat_idx, sender_id, receiver_id, message, message_date) 
-        VALUES (?, ?, ?, '${userId}님이 채팅방을 생성하셨습니다.', NOW())`;
+            VALUES (?, ?, ?, '${userId}님이 채팅방을 생성하셨습니다.', NOW())`;
         await query(sql, [chatIdx, userId, receiver]);
 
-        res.json({ success: true, chatIdx : chatIdx });
+        res.json({ success: true, chatIdx: chatIdx });
       } catch (err) {
         console.error(err);
-        res.status(500).json({ error: 'Internal Server Error' });
+        res.status(500).json({ error: "Internal Server Error" });
       }
-    } catch (err){
+    } catch (err) {
       console.error(err);
-      res.status(500).json({ error: 'Internal Server Error' });
+      res.status(500).json({ error: "Internal Server Error" });
     }
   } catch (err) {
     console.error(err);
-    res.status(500).json({ error: 'Internal Server Error' });
+    res.status(500).json({ error: "Internal Server Error" });
   }
 });
 

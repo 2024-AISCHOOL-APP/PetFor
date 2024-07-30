@@ -47,6 +47,7 @@ const Chatting = () => {
         return () => {
             newSocket.disconnect();
         };
+// eslint-disable-next-line
     }, [chatIdx, senderId]);
 
     const handleSend = async () => {

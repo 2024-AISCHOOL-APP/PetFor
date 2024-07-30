@@ -25,6 +25,7 @@ const Register_reco = () => {
                 setNonChatUsers(nonChatUsers);
             })
             .catch((error) => console.error('Error fetching chat list', error));
+// eslint-disable-next-line
     }, [userId]);
 
     useEffect(() => {
@@ -34,10 +35,53 @@ const Register_reco = () => {
                 setNonChatUsers(recommendations);
             })
             .catch((error) => console.error('Error fetching recommendations', error));
+// eslint-disable-next-line
     }, [userId]);
 
     const goChatting = async (person) => {
         nav('/chatting', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: person.chat_idx[0] } });
+    };
+
+    const newChatting = async (user_id) => {
+        const existingChat = chatUsers.find(user => user.user.user_id === user_id);
+
+        if (existingChat) {
+            // 채팅방이 이미 존재하면 해당 채팅방으로 이동
+            goChatting(existingChat);
+        } else {
+            // 채팅방이 존재하지 않으면 새 채팅방 생성
+            const newChatData = {
+                userId: userId,
+                receiver: user_id
+            };
+
+            try {
+                const response = await axios.post('/chat/newChatting', newChatData);
+                if (response.data.success) {
+                    // 새 채팅방 생성 성공 시 해당 채팅방으로 이동
+                    nav('/chatting', { state: { senderId: userId, receiverId: user_id, chatIdx: response.data.chatIdx } });
+                }
+            } catch (error) {
+                console.error('Error creating new chat', error);
+            }
+        }
+
+        // const newChatData = {
+        //     userId: userId,
+        //     receiver : user_id
+        // }
+        // const userIdcheck = chatUsers.find(user => user.user.user_id === userId);
+        // if(userIdcheck === user_id){
+        //     goChatting(chatUsers)
+        // } else {
+        //     const response = await axios.post('/chat/newChatting', newChatData)
+        //     if (response.data.success){
+        //         nav('/chatting', { state: { senderId: userId, receiverId: user_id, chatIdx: response.data.chatIdx } });
+        //     }
+        // }
+        //  else {
+        //     nav('/chatting', { state: { senderId: userId, receiverId: user_id, chatIdx: response.data.chatIdx } });
+        // }
     };
 
     return (
@@ -46,7 +90,7 @@ const Register_reco = () => {
                 <h2>채팅 목록</h2>
                 <ul className="recommand-chat-list">
                     {chatUsers.map((person, index) => (
-                        <li key={index} className="recommand-chat-item" onClick={() => { goChatting(person) }}>
+                        <li key={index} className="recommand-chat-item" onClick={()=>{goChatting(person)}}>
                             <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
                             <span>{person.user.nickname}</span>
                         </li>
@@ -58,7 +102,7 @@ const Register_reco = () => {
                 <h2>추천 업체</h2>
                 <ul className="recommand-chat-list">
                     {nonChatUsers.map((person, index) => (
-                        <li key={index} className="recommand-chat-item">
+                        <li key={index} className="recommand-chat-item" onClick={()=>{newChatting(person.user_id, chatUsers)}}>
                             <img src="/images/basic.png" className="chat-img" alt="Basic" />
 
                             <span>{person.store_name}</span>

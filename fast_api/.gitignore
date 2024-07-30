@@ -1,3 +1,4 @@
 /venv
 llama-3-Korean-Bllossom-8B-Q4_K_M.gguf
 /__pycache__
+config.py
