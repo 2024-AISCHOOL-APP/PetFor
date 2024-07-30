@@ -12,6 +12,7 @@
     height: 380px
     
     
+    
 }
 
 .business-registration-back-button {
@@ -55,6 +56,7 @@ h1 {
     font-size: 16px;
     margin-right: 10px;
     
+    
 }
 
 .input-group input {
@@ -62,7 +64,6 @@ h1 {
     padding: 10px;
     font-size: 16px;
     border: 1px solid #ccc;
-    border-radius: 5px;
     box-sizing: border-box;
     font-family: 'OnGulIp RyuTtung';
 }

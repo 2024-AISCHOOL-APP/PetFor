@@ -1,5 +1,7 @@
 * {
     box-sizing: border-box;
+    font-family: 'OnGulIp RyuTtung';
+    border-radius: 15px;
 }
 
 .chat-container {

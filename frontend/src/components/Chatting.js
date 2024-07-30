@@ -76,7 +76,7 @@ const Chatting = () => {
 
     return (
         <div className='chat-container'>
-            
+            <h3>{receiverId}</h3>
             <div id="chatContent">
                 {messages.map((msg, index) => (
                     <div key={index} className={`msgLine ${msg.isSender ? 'myMsg' : 'otherMsg'}`}>

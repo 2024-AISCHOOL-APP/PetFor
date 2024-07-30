@@ -29,26 +29,28 @@ router.post("/list", async (req, res) => {
     // 중복 제거된 채팅 사용자 ID 목록 추출
     const chatUserIds = [...new Set(userChatMap.map(item => item.userId))];
 
-    // 채팅하지 않는 사용자 정보 불러오기
-    const sqlUserList = `SELECT user_id, nickname, user_profile FROM user WHERE user_id NOT IN (?)`;
-    const allUsers = await query(sqlUserList, [chatUserIds]);
+    // 모든 사용자 정보를 가져오기
+    const sqlAllUsers = `SELECT user_id, nickname, user_profile FROM user`;
+    const allUsers = await query(sqlAllUsers);
+    
+    // 채팅하고 있는 사용자 정보와 채팅하지 않는 사용자 정보를 분리
+    const chatUsers = [];
+    const nonChatUsers = [];
 
-    // 채팅 사용자 정보 불러오기
-    const sqlChatUserDetails = `SELECT user_id, nickname, user_profile FROM user WHERE user_id IN (?)`;
-    const chatUsersDetails = await query(sqlChatUserDetails, [chatUserIds]);
-
-    // 채팅 사용자와 채팅하지 않는 사용자 정보를 배열로 분리
-    const chatUsers = chatUsersDetails.map(user => ({
-        user,
-        chat_idx: userChatMap
-            .filter(item => item.userId === user.user_id)
-            .map(item => item.chat_idx)
-    }));
-
-    const nonChatUsers = allUsers.map(user => ({
-        user,
-        chat_idx: []
-    }));
+    allUsers.forEach(user => {
+      if (chatUserIds.includes(user.user_id)) {
+        const userChats = userChatMap.filter(item => item.userId === user.user_id);
+        chatUsers.push({
+          user,
+          chat_idx: userChats.map(item => item.chat_idx)
+        });
+      } else {
+        nonChatUsers.push({
+          user,
+          chat_idx: []
+        });
+      }
+    });
     
     res.json({
         chatUsers,
@@ -98,6 +100,43 @@ router.post('/send', async (req, res) => {
   } catch (err) {
       console.error(err);
       res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// 새 채팅방 추가
+router.post('/newChatting', async (req, res) => {
+  const { userId, receiver } = req.body;
+
+  if (!userId || !receiver) {
+    return res.status(400).json({ error: 'All fields are required' });
+  }
+
+  try {
+    const sql = `INSERT INTO chat_list (user_id, chatting_date, receiver) VALUES (?, now(), ?)`;
+    await query(sql, [userId, receiver]);
+
+    try {
+      const sql = `SELECT chat_idx FROM chat_list WHERE user_id = ? AND receiver = ?`;
+      const chatIdxResult  = await query(sql, [userId, receiver]);
+      const chatIdx = chatIdxResult[0].chat_idx;
+
+      try {
+        const sql = `INSERT INTO chatting (chat_idx, sender_id, receiver_id, message, message_date) 
+        VALUES (?, ?, ?, '${userId}님이 채팅방을 생성하셨습니다.', NOW())`;
+        await query(sql, [chatIdx, userId, receiver]);
+
+        res.json({ success: true, chatIdx : chatIdx });
+      } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: 'Internal Server Error' });
+      }
+    } catch (err){
+      console.error(err);
+      res.status(500).json({ error: 'Internal Server Error' });
+    }
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Internal Server Error' });
   }
 });
 

@@ -70,12 +70,14 @@
     border-radius: 10px;
     text-align: center;
     width: 250px; /* 카테고리 박스의 너비를 지정 */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
     
 }
 
 .category-box-header {
     background-color: #fff;
     padding: 1px;
+    border-radius: 0px;
     border-top-left-radius: 15px;
     border-top-right-radius: 15px;
     background-color: #fff5cc;
@@ -85,6 +87,7 @@
 .category-box-content {
     padding: 20px;
     background-color: #fff5cc;
+    border-radius: 0px;
     border-bottom-left-radius: 15px;
     border-bottom-right-radius: 15px;
     
