@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import './Register_reco.css';
-import axios from '../axios';
+import axios from '../axios'; // axios 인스턴스 임포트
 import { AuthContext } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
@@ -9,7 +9,7 @@ const Register_reco = () => {
     const [chatUsers, setChatUsers] = useState([]);
     const [nonChatUsers, setNonChatUsers] = useState([]);
     const nav = useNavigate();
-    const data = { userId : userId };
+    const data = { userId: userId };
 
     useEffect(() => {
         if (!isLoggedIn) {
@@ -27,6 +27,15 @@ const Register_reco = () => {
             .catch((error) => console.error('Error fetching chat list', error));
     }, [userId]);
 
+    useEffect(() => {
+        axios.post('/chat/recommendations', data)
+            .then((response) => {
+                const recommendations = response.data.recommendations;
+                setNonChatUsers(recommendations);
+            })
+            .catch((error) => console.error('Error fetching recommendations', error));
+    }, [userId]);
+
     const goChatting = async (person) => {
         nav('/chatting', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: person.chat_idx[0] } });
     };
@@ -37,7 +46,7 @@ const Register_reco = () => {
                 <h2>채팅 목록</h2>
                 <ul className="recommand-chat-list">
                     {chatUsers.map((person, index) => (
-                        <li key={index} className="recommand-chat-item" onClick={()=>{goChatting(person)}}>
+                        <li key={index} className="recommand-chat-item" onClick={() => { goChatting(person) }}>
                             <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
                             <span>{person.user.nickname}</span>
                         </li>
@@ -50,13 +59,13 @@ const Register_reco = () => {
                 <ul className="recommand-chat-list">
                     {nonChatUsers.map((person, index) => (
                         <li key={index} className="recommand-chat-item">
-                            <img src={person.user.user_profile} alt={person.user.nickname} className="chat-img" />
-                            <span>{person.user.nickname}</span>
+                            <img src="/images/basic.png" className="chat-img" alt="Basic" />
+
+                            <span>{person.store_name}</span>
                         </li>
                     ))}
                 </ul>
             </section>
-            
         </main>
     );
 };

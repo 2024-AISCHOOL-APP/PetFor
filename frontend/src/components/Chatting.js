@@ -74,9 +74,14 @@ const Chatting = () => {
         }
     };
 
+    const handleBack = () => {
+        nav('/chat');
+    };
+
     return (
         <div className='chat-container'>
             <h3>{receiverId}</h3>
+            <button className="chatting-back-button" onClick={handleBack}>←</button>
             <div id="chatContent">
                 {messages.map((msg, index) => (
                     <div key={index} className={`msgLine ${msg.isSender ? 'myMsg' : 'otherMsg'}`}>

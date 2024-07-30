@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const conn = require("../config/database");
 const util = require("util");
+const axios = require('axios');
 
 const query = util.promisify(conn.query).bind(conn);
 
@@ -137,6 +138,26 @@ router.post('/newChatting', async (req, res) => {
   } catch (err) {
     console.error(err);
     res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+// FastAPI 서버의 주소
+const FASTAPI_URL = 'http://127.0.0.1:8500';
+
+
+// 추천 시스템 엔드포인트
+router.post('/recommendations', async (req, res) => {
+  try {
+      const { userId } = req.body;
+
+      // FastAPI 서버에 요청 보내기
+      const response = await axios.post(`${FASTAPI_URL}/recommendations`, { user_id: userId });
+
+      // FastAPI 서버의 응답을 프론트엔드로 전달
+      res.json(response.data);
+  } catch (error) {
+      console.error('Error fetching recommendations from FastAPI:', error);
+      res.status(500).json({ error: 'Failed to fetch recommendations' });
   }
 });
 

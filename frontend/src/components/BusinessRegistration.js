@@ -88,11 +88,11 @@ const BusinessRegistration = () => {
                     </select>
                 </div>
                 <div className="input-group">
-                    <label htmlFor="averageCost">평균 비용 (만원 단위)</label>
+                    <label htmlFor="averageCost">진료 평균 비용</label>
                     <input
                         type="number"
                         id="averageCost"
-                        placeholder="1에서 500까지 입력하세요"
+                        placeholder="1 ~ 500 (만원 단위)"
                         required
                         min="1"
                         max="500"
