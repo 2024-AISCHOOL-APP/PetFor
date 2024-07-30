@@ -39,7 +39,7 @@ const Register_reco = () => {
     }, [userId]);
 
     const goChatting = async (person) => {
-        nav('/chatting', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: person.chat_idx[0] } });
+        nav('/RegisterChat', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: person.chat_idx[0] } });
     };
 
     const newChatting = async (user_id) => {
@@ -59,7 +59,7 @@ const Register_reco = () => {
                 const response = await axios.post('/chat/newChatting', newChatData);
                 if (response.data.success) {
                     // 새 채팅방 생성 성공 시 해당 채팅방으로 이동
-                    nav('/chatting', { state: { senderId: userId, receiverId: user_id, chatIdx: response.data.chatIdx } });
+                    nav('/RegisterChat', { state: { senderId: userId, receiverId: user_id, chatIdx: response.data.chatIdx } });
                 }
             } catch (error) {
                 console.error('Error creating new chat', error);

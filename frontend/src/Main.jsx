@@ -19,6 +19,7 @@ import Updatepost from './components/Updatepost';
 import Chatting from './components/Chatting';
 import SideImages from './components/SideImages';
 import Register_reco from './components/Register_reco';
+import RegisterChat from './components/RegisterChat';
 
 
 
@@ -71,6 +72,7 @@ const Main = () => {
         <Route path="/community-content/:id" element={<CommunityContent />} />
         <Route path="/Updatepost/:id" element={<Updatepost />} />
         <Route path="/Register_reco" element={<Register_reco />} />
+        <Route path="/RegisterChat" element={<RegisterChat />} />
         
       </Routes>
     </UserInfo.Provider>
