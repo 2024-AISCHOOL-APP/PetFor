@@ -3,19 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import './RegisterMethod.css';
 
 const RegisterMethod = () => {
-    const navigate = useNavigate();
-
-    const handleBusinessRegistrationClick = () => {
-        navigate('/business-registration');
-    };
-
-    const handleProfessionalCertificationClick = () => {
-        navigate('/professional-certification');
-    };
-
-    const handleBackClick = () => {
-        navigate('/register');
-    };
+    const nav = useNavigate();
+    const handleBusinessRegistrationClick = () => { nav('/business-registration'); };
+    const handleProfessionalCertificationClick = () => { nav('/professional-certification'); };
+    const handleBackClick = () => { nav('/register'); };
 
     return (
         <div className="register-method-container">

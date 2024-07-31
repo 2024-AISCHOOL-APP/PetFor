@@ -6,20 +6,12 @@ const md5 = require('md5');
 router.post('/handleSignIn', (req, res)=>{
     const {userId, userPw} = req.body;
     const hashPw = md5(userPw);
-    /*
-    conn.query(sql, values, callback)
-    */
     const sql = `SELECT user_id, nickname FROM user WHERE user_id=? AND pw=?`;
-
     conn.query(sql, [userId, hashPw], (err, rows)=>{
         if(rows.length>0){
-            req.session.user = {
-                id: rows[0].user_id,
-                nickname: rows[0].nickname
-            };
+            req.session.user = { id: rows[0].user_id,nickname: rows[0].nickname };
             res.json({ success : true, nickname: rows[0].nickname  });
         } else {
-            console.log('로그인 실패');
             res.json({ success : false });
         }
     })
@@ -28,9 +20,7 @@ router.post('/handleSignIn', (req, res)=>{
 router.post('/handleSignUp', (req, res)=>{
     const {userId, userPw, userNickname, userProfile, userType , userLocation} = req.body;
     const hashPw = md5(userPw);
-
     const sql = `INSERT INTO user VALUES (?, ?, ?, ?, current_timestamp(), ?, ?)`;
-
     conn.query(sql, [userId, hashPw, userNickname, userType, userProfile , userLocation], (err, rows)=>{
         if(rows){
             res.json({success : true})
@@ -41,11 +31,9 @@ router.post('/handleSignUp', (req, res)=>{
     })
 })
 
-//아이디 중복확인
 router.post('/checkDuplicate', (req, res) => {
     const { userId } = req.body;
     const sql = `SELECT COUNT(*) as count FROM user WHERE user_id = ?`;
-
     conn.query(sql, [userId], (err, rows) => {
         if (err) {
             console.error('Error checking duplicate ID:', err);
@@ -56,7 +44,6 @@ router.post('/checkDuplicate', (req, res) => {
     });
 });
 
-// 세션확인 : 로그인 상태 확인
 router.get('/checkSession', (req, res) => {
     if (req.session.user) {
         res.json({ loggedIn: true, nickname: req.session.user.nickname });
@@ -65,7 +52,6 @@ router.get('/checkSession', (req, res) => {
     }
 });
 
-// 로그아웃 요청 처리 라우터
 router.post('/handleLogout', (req, res) => {
     req.session.destroy(err => {
         if (err) {

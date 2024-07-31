@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Route, Routes } from 'react-router-dom'
+import { AuthProvider } from './AuthContext';
+import { UserInfo } from './UserInfo'
 
 import Header from './components/Header';
 import Logo from './components/Logo';
@@ -11,22 +13,15 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import WritePost from './components/WritePost';
 import SearchResults from './components/SearchResults';
-import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴포넌트 임포트
-import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
-import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
+import RegisterMethod from './components/RegisterMethod';
+import BusinessRegistration from './components/BusinessRegistration';
+import ProfessionalCertification from './components/ProfessionalCertification';
 import CommunityContent from './components/CommunityContent';
 import Updatepost from './components/Updatepost';
 import Chatting from './components/Chatting';
 import SideImages from './components/SideImages';
-import Register_reco from './components/Register_reco';
+import RegisterReco from './components/Register_reco';
 import RegisterChat from './components/RegisterChat';
-
-
-
-import { AuthProvider } from './AuthContext'; // AuthProvider 임포트
-
-import { UserInfo } from './UserInfo'
-
 import ChatBotButton from './components/ChatBotButton';
 
 const Main = () => {
@@ -38,44 +33,31 @@ const Main = () => {
 
   return (
     <AuthProvider>
-    <UserInfo.Provider
-      value={{
-        userId,
-        setUserId,
-        userPw,
-        setUserPw,
-        userNickname,
-        setUserNickname,
-        userProfile,
-        setUserProfile,
-        userType,
-        setUserType
-      }}>
-        <SideImages />
-        <Header />
-        
-        <Logo />
-        <ChatBotButton></ChatBotButton>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/register" element={<Register />} />
-        <Route path="/community" element={<Community />} />
-        <Route path="/chat" element={<Chat />} />
-        <Route path='/chatting' element={<Chatting />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/writepost" element={<WritePost />} />
-        <Route path="/search" element={<SearchResults />} />
-        <Route path="/register-method" element={<RegisterMethod />} />
-        <Route path="/business-registration" element={<BusinessRegistration />} />
-        <Route path="/professional-certification" element={<ProfessionalCertification />} />
-        <Route path="/community-content/:id" element={<CommunityContent />} />
-        <Route path="/Updatepost/:id" element={<Updatepost />} />
-        <Route path="/Register_reco" element={<Register_reco />} />
-        <Route path="/RegisterChat" element={<RegisterChat />} />
-        
-      </Routes>
-    </UserInfo.Provider>
+      <UserInfo.Provider
+        value={{ userId, setUserId, userPw, setUserPw, userNickname, setUserNickname, userProfile, setUserProfile, userType, setUserType }}>
+          <SideImages />
+          <Header />
+          <Logo />
+          <ChatBotButton></ChatBotButton>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/community" element={<Community />} />
+          <Route path="/chat" element={<Chat />} />
+          <Route path='/chatting' element={<Chatting />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/writepost" element={<WritePost />} />
+          <Route path="/search" element={<SearchResults />} />
+          <Route path="/register-method" element={<RegisterMethod />} />
+          <Route path="/business-registration" element={<BusinessRegistration />} />
+          <Route path="/professional-certification" element={<ProfessionalCertification />} />
+          <Route path="/community-content/:id" element={<CommunityContent />} />
+          <Route path="/Updatepost/:id" element={<Updatepost />} />
+          <Route path="/Register_reco" element={<RegisterReco />} />
+          <Route path="/RegisterChat" element={<RegisterChat />} />
+        </Routes>
+      </UserInfo.Provider>
     </AuthProvider>
   );
 }

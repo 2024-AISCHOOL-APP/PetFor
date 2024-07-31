@@ -5,7 +5,6 @@
     padding: 20px;
     background-color: #fff9f3;
     max-width: 100%;
-    
 }
 
 .update-back-button {
@@ -17,7 +16,7 @@
     position: absolute;
     top: 200px;
     left: 50%; 
-    transform: translateX(210px); /* 가운데에서 오른쪽으로 이동 */
+    transform: translateX(210px);
     width: 60px;
     font-family: 'OnGulIp RyuTtung';
 }
@@ -26,7 +25,6 @@
     margin-bottom: 15px;
     width: 100%;
     max-width: 1200px; 
-    
 }
 
 input#title {
@@ -48,7 +46,6 @@ textarea {
     border-radius: 5px;
     box-sizing: border-box;
     resize: vertical;
-    
 }
 
 .up-submit-button {

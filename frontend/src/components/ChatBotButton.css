@@ -7,7 +7,6 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-    
 }
 
 .chatbot-button {
@@ -33,14 +32,12 @@
     height: 400px;
     background: white;
     border-radius: 10px;
-    
     display: flex;
     flex-direction: column;
 }
 
 .chatbot-header {
     background: #fff5cc;
-    
     padding: 10px;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;

@@ -5,12 +5,12 @@ import axios from '../axios';
 import { AuthContext } from '../AuthContext';
 
 const CommunityContent = () => {
-    const navigate = useNavigate();
-    const { id } = useParams(); // URL에서 포스트 ID를 가져옴
+    const nav = useNavigate();
+    const { id } = useParams();
+    const { userId } = useContext(AuthContext);
     const [post, setPost] = useState(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
-    const { userId } = useContext(AuthContext);
 
     useEffect(() => {
         axios.get(`/list/post/${id}`)
@@ -24,32 +24,18 @@ const CommunityContent = () => {
                 setLoading(false);
             });
     }, [id]);
-
-    if (loading) {
-        return <p>Loading...</p>;
-    }
-
-    if (error) {
-        return <p>{error}</p>;
-    }
-
-    if (!post) {
-        return <p>Post not found</p>;
-    }
-
-
-    
+    if (loading) { return <p>Loading...</p>; }
+    if (error) { return <p>{error}</p>; }
+    if (!post) { return <p>Post not found</p>; }
     const handleBackClick = () => {
         const previousPage = sessionStorage.getItem('currentPage') || 1;
-        navigate(`/community?page=${previousPage}`);
+        nav(`/community?page=${previousPage}`);
     };
-
-
     const handleDeleteClick = () => {
         axios.delete(`/list/post/${id}`, { data: { userId } })
             .then((response) => {
                 if (response.data.success) {
-                    navigate(`/community?page=${sessionStorage.getItem('currentPage') || 1}`);
+                    nav(`/community?page=${sessionStorage.getItem('currentPage') || 1}`);
                 } else {
                     alert('자신의 글만 삭제 가능합니다');
                 }
@@ -59,13 +45,11 @@ const CommunityContent = () => {
                 alert('자신의 글만 삭제 가능합니다');
             });
     };
-
     const handleUpdateClick = () => {
-        // 작성자 확인
         if (post.user_id !== userId) {
             alert('자신의 글만 수정 가능합니다');
         } else {
-            navigate(`/updatepost/${id}`);
+            nav(`/updatepost/${id}`);
         }
     };
 
@@ -82,11 +66,11 @@ const CommunityContent = () => {
                 </article>
                 <div className='changeBox'>
                 {post.user_id === userId && (
-                        <>
-                            <button className='deleteBtn' onClick={handleDeleteClick}>삭제</button>
-                            <button className='updateBtn' onClick={handleUpdateClick}>수정</button>
-                        </>
-                    )}
+                    <div>
+                        <button className='deleteBtn' onClick={handleDeleteClick}>삭제</button>
+                        <button className='updateBtn' onClick={handleUpdateClick}>수정</button>
+                    </div>
+                )}
                 </div>
             </section>
         </main>

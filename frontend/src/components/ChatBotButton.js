@@ -4,10 +4,7 @@ import './ChatBotButton.css';
 
 const ChatBotButton = () => {
   const [isOpen, setIsOpen] = useState(false);
-
-  const toggleChatBot = () => {
-    setIsOpen(!isOpen);
-  };
+  const toggleChatBot = () => { setIsOpen(!isOpen); };
 
   return (
     <div className="chatbot-container">

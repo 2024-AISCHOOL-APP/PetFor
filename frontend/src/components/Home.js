@@ -3,14 +3,11 @@ import { useNavigate, Link } from 'react-router-dom';
 import './Home.css';
 
 function Home() {
+    const nav = useNavigate();
     const [category1, setCategory1] = useState('');
     const [category2, setCategory2] = useState('');
-    const navigate = useNavigate();
 
-    const handleSearch = () => {
-        navigate(`/search?category1=${category1}&category2=${category2}`);
-    };
-
+    const handleSearch = () => { nav(`/search?category1=${category1}&category2=${category2}`); };
     const category1Options = ['피부', '뼈 및 관절 ', '눈', '귀', '이빨', '치매', '예방접종', '행동', '체중', '음식', '생식기관', '증상', '사고', '폐'];
     const category2Options = {
         '뼈 및 관절 ': ['관절염', '슬개골 탈구', '골관절염', '골절', '골수염'],
@@ -27,7 +24,6 @@ function Home() {
         '증상': ['헛기침', '코가 말랐어요', '복부 팽만', '혈뇨', '변비', '설사', '구토', '심장사상충', '심장질환', '열사병', '당뇨', '털갈이', '빈혈'],
         '사고': ['외상', '중독', '화상', '찰과상', '낙상 사고 '],
         '폐': ['폐렴', '폐기종', '폐수종']
-        
     };
 
     return (
@@ -37,7 +33,6 @@ function Home() {
                 <Link to="/community" className="button">커뮤니티</Link>
                 <Link to="/chat" className="button"> 채팅 </Link>
             </nav>
-            
             <section className="category-container">
                 <CategoryBox 
                     title="증상 선택" 
@@ -45,7 +40,7 @@ function Home() {
                     selectedCategory={category1} 
                     onChange={(value) => {
                         setCategory1(value);
-                        setCategory2(''); // 카테고리1 변경 시 카테고리2 초기화
+                        setCategory2('');
                     }} 
                 />
                 <CategoryBox 
@@ -69,16 +64,10 @@ function CategoryBox({ title, options, selectedCategory, onChange }) {
                 <h3>{title}</h3>
             </div>
             <div className="category-box-content">
-                <select 
-                    value={selectedCategory} 
-                    onChange={(e) => onChange(e.target.value)}
-                    className="category-select"
-                >
+                <select value={selectedCategory} onChange={(e) => onChange(e.target.value)} className="category-select">
                     <option value="">-- 선택하세요 --</option>
                     {options.map((option, index) => (
-                        <option key={index} value={option}>
-                            {option}
-                        </option>
+                        <option key={index} value={option}>{option}</option>
                     ))}
                 </select>
             </div>

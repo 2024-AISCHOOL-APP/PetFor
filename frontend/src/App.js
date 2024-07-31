@@ -10,12 +10,11 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import WritePost from './components/WritePost';
 import SearchResults from './components/SearchResults';
-import RegisterMethod from './components/RegisterMethod'; // RegisterMethod 컴포넌트 임포트
-import BusinessRegistration from './components/BusinessRegistration'; // BusinessRegistration 컴포넌트 임포트
-import ProfessionalCertification from './components/ProfessionalCertification'; // ProfessionalCertification 컴포넌트 임포트
+import RegisterMethod from './components/RegisterMethod';
+import BusinessRegistration from './components/BusinessRegistration';
+import ProfessionalCertification from './components/ProfessionalCertification';
 import Updatepost from './components/Updatepost';
 import SideImages from './components/SideImages';
-
 
 function App() {
     return (
@@ -36,8 +35,6 @@ function App() {
                 <Route path="/business-registration" element={<BusinessRegistration />} /> 
                 <Route path="/professional-certification" element={<ProfessionalCertification />} /> 
                 <Route path="/Updatepost/:id" element={<Updatepost />} />
-                
-
             </Routes>
         </div>
     );

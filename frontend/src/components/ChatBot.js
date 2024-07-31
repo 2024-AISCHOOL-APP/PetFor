@@ -4,7 +4,7 @@ import './ChatBot.css';
 
 const ChatBot = () => {
   const [query, setQuery] = useState('');
-  const [queries, setQueries] = useState([]); // 추가: queries 상태
+  const [queries, setQueries] = useState([]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const chatbotBodyRef = useRef(null);
@@ -14,15 +14,13 @@ const ChatBot = () => {
     setError('');
     try {
       const res = await axios.post('/search/searching', { prompt: currentQuery });
-      console.log('서버 응답:', res.data); // 응답 데이터 로그
-      setQueries(prevQueries => [...prevQueries, { query: currentQuery, response: res.data.response.replace(/\n/g, '<br />') }]); // 수정: 새로운 질문과 응답 추가
+      setQueries(prevQueries => [...prevQueries, { query: currentQuery, response: res.data.response.replace(/\n/g, '<br />') }]);
     } catch (err) {
       setError('검색 중 오류가 발생했습니다.');
     } finally {
       setLoading(false);
     }
   };
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (query.trim() !== '') {
@@ -30,11 +28,8 @@ const ChatBot = () => {
       setQuery('');
     }
   };
-
   useEffect(() => {
-    if (chatbotBodyRef.current) {
-      chatbotBodyRef.current.scrollTop = chatbotBodyRef.current.scrollHeight;
-    }
+    if (chatbotBodyRef.current) { chatbotBodyRef.current.scrollTop = chatbotBodyRef.current.scrollHeight; }
   }, [queries]);
 
   return (
@@ -52,15 +47,9 @@ const ChatBot = () => {
           ))}
           {loading && <h4 className='wait'>검색 중...잠시만 기다려주세요</h4>}
           {error && <p className="error">{error}</p>}
-          
-        </form>
-        <input
-            className="chatbotInput"
-            value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="질문을 입력하세요..."
-          />
+          <input className="chatbotInput" value={query} onChange={(e) => setQuery(e.target.value)} placeholder="질문을 입력하세요..." />
           <input type="submit" className="chatbotSubmit" value="전송" disabled={loading} />
+        </form>
       </div>
     </div>
   );

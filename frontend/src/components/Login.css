@@ -1,11 +1,9 @@
-/* src/App.css */
 @font-face {
     font-family: 'OnGulIp RyuTtung';
     src: url('../../public/fonts/온글잎\ 류뚱체.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
-    
-  }
+}
 
 .login-container {
     display: flex;
@@ -14,10 +12,8 @@
     justify-content: center;
     height: 300px;
     padding: 0px;
-
     background-color: #fff9f3 ;
     margin-top: 1px;
-    
 }
 
 h1 {
@@ -44,8 +40,6 @@ label {
     border-radius: 5px;
 }
 
-
-
 .login-submit-button{
     padding: 10px 20px;
     font-size: 20px;
@@ -55,8 +49,6 @@ label {
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
-    max-width: 500px; /* 제출 버튼도 같은 너비로 설정 */
+    max-width: 500px;
     font-family: 'OnGulIp RyuTtung';
 }
-
-

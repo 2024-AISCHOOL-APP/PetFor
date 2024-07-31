@@ -19,7 +19,6 @@ h1 {
     align-items: center;
     margin-bottom: 15px;
     border: #ccc;
-    
 }
 
 label {
@@ -28,6 +27,7 @@ label {
     margin-right: 10px;
     text-align: left; 
 }
+
 .signup-input{
     flex: 1;
     padding: 10px;
@@ -55,7 +55,7 @@ button[type="button"] {
     cursor: pointer;
     margin-top: 20px;
     width: 100%;
-    max-width: 500px; /* 제출 버튼도 같은 너비로 설정 */
+    max-width: 500px;
     font-family: 'OnGulIp RyuTtung';
 }
 

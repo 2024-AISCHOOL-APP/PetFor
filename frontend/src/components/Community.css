@@ -3,12 +3,9 @@
     flex-direction: column;
     align-items: center;
     padding: 20px;
-    
     min-height: 300px;
     max-height: 380px;
     height:100%;
-   
-    
 }
 
 h1 {
@@ -34,10 +31,7 @@ h1 {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    /* overflow-y: auto; */
-    padding-left: 10px; /* border-left의 너비만큼 패딩 추가 */
-    
-    
+    padding-left: 10px;
 }
 
 .post {
@@ -52,15 +46,12 @@ h1 {
     justify-content: center;
 }
 
-
 .post-title {
     font-size: 15px;
     flex:1;
     text-align: center;
     width: 83%;
-    font-size: 17px;   
-    
-
+    font-size: 17px;
 }
 
 .post-author {
@@ -69,24 +60,17 @@ h1 {
     margin: 0px;
     position: relative;
     padding: 5px;
-    
     width: 17%;
     height: 40px;
     overflow: hidden;
     border-top-left-radius: 0px;
     border-bottom-left-radius: 0px;
-    
     border-left: 4px solid #fff9f3;
     display: flex;
-    align-items: center; 
-    
+    align-items: center;
     white-space: nowrap; 
     text-overflow: ellipsis; 
 }
-
-
-
-
 
 .indexNumber{
     margin-left: 15px;
@@ -102,7 +86,6 @@ h1 {
     border-radius: 15px;
     cursor: pointer;
     margin-top: 30px;
-    /* margin-left: 505px;  */
     font-family: 'OnGulIp RyuTtung';
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
@@ -118,4 +101,3 @@ h1 {
     font-family: 'OnGulIp RyuTtung';
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
-

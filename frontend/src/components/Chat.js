@@ -5,18 +5,13 @@ import { AuthContext } from '../AuthContext';
 import { useNavigate } from 'react-router-dom';
 
 const Chat = () => {
+    const nav = useNavigate();
     const { userId, isLoggedIn } = useContext(AuthContext);
     const [chatUsers, setChatUsers] = useState([]);
     const [nonChatUsers, setNonChatUsers] = useState([]);
-    const nav = useNavigate();
     const data = { userId : userId };
 
-    useEffect(() => {
-        if (!isLoggedIn) {
-            nav('/login'); // 로그인하지 않은 경우 로그인 페이지로 이동
-        }
-    }, [isLoggedIn, nav]);
-
+    useEffect(() => { if (!isLoggedIn) { nav('/login'); } }, [isLoggedIn, nav]);
     useEffect(() => {
         axios.post('/chat/list', data)
             .then((response) => {
@@ -25,12 +20,11 @@ const Chat = () => {
                 setNonChatUsers(nonChatUsers);
             })
             .catch((error) => console.error('Error fetching chat list', error));
+    // eslint-disable-next-line
     }, [userId]);
-
     const goChatting = async (person) => {
         nav('/chatting', { state: { senderId: userId, receiverId: person.user.user_id, chatIdx: person.chat_idx[0] } });
     };
-
     const newChatting = async (person) => {
         const newChatData = {
             userId: userId,
@@ -55,7 +49,6 @@ const Chat = () => {
                     ))}
                 </ul>
             </section>
-            
             <section className="chat-section">
                 <h2>새로운 사람</h2>
                 <ul className="chat-list">
@@ -67,7 +60,6 @@ const Chat = () => {
                     ))}
                 </ul>
             </section>
-            
         </main>
     );
 };

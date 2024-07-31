@@ -5,12 +5,12 @@ import { useNavigate } from 'react-router-dom';
 import { UserInfo } from '../UserInfo';
 
 function Signup() {
+    const nav = useNavigate();
     const { userId, setUserId, userPw, setUserPw, userNickname, setUserNickname, userProfile, userType } = useContext(UserInfo);
     const [confirmPassword, setConfirmPassword] = useState('');
-    const [passwordMatch, setPasswordMatch] = useState(null); // 비밀번호 일치 여부 상태
-    const [isDuplicate, setIsDuplicate] = useState(null); // 아이디 중복 여부 상태
-    const [userLocation, setUserLocation] = useState('서울특별시'); // 지역 정보 상태
-    const nav = useNavigate();
+    const [passwordMatch, setPasswordMatch] = useState(null);
+    const [isDuplicate, setIsDuplicate] = useState(null);
+    const [userLocation, setUserLocation] = useState('서울특별시');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -25,17 +25,14 @@ function Signup() {
                 userNickname: userNickname,
                 userProfile: userProfile,
                 userType: userType,
-                userLocation: userLocation // 추가된 부분
+                userLocation: userLocation
             });
-            console.log(response.data.success);
             response.data.success ? nav('/login') : nav('/signup');
         } catch (error) {
             console.error(error);
         }
     };
-
     const CheckDuplicate = async () => {
-        // 아이디 중복확인
         try {
             const response = await axios.post('/user/checkDuplicate', { userId });
             setIsDuplicate(response.data.isDuplicate);
@@ -43,9 +40,7 @@ function Signup() {
             console.error('Error checking duplicate ID', error);
         }
     };
-
     const passwordCheck = (e) => {
-        // 비밀번호 중복 확인
         setConfirmPassword(e.target.value);
         setPasswordMatch(e.target.value === userPw);
     };
@@ -55,18 +50,8 @@ function Signup() {
             <form onSubmit={handleSubmit}>
                 <fieldset className="form-group">
                     <label htmlFor="id">아이디</label>
-                    <input
-                        className='signup-id-input'
-                        type="text"
-                        id="id"
-                        name="userId"
-                        onChange={(e) => setUserId(e.target.value)}
-                        placeholder="아이디를 입력하세요."
-                        required
-                    />
-                    <button type="button" onClick={CheckDuplicate} className="duplicate">
-                        중복확인
-                    </button>
+                    <input className='signup-id-input' type="text" id="id" name="userId" onChange={(e) => setUserId(e.target.value)} placeholder="아이디를 입력하세요." required />
+                    <button type="button" onClick={CheckDuplicate} className="duplicate">중복확인</button>
                 </fieldset>
                 {isDuplicate === true && (
                     <p className="error-message">아이디가 중복됩니다</p>
@@ -76,27 +61,11 @@ function Signup() {
                 )}
                 <fieldset className="form-group">
                     <label htmlFor="password">비밀번호</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="userPw"
-                        className="signup-input"
-                        onChange={(e) => setUserPw(e.target.value)}
-                        placeholder="비밀번호를 입력하세요."
-                        required
-                    />
+                    <input type="password" id="password" name="userPw" className="signup-input" onChange={(e) => setUserPw(e.target.value)} placeholder="비밀번호를 입력하세요." required />
                 </fieldset>
                 <fieldset className="form-group">
                     <label htmlFor="confirmPassword">비밀번호 확인</label>
-                    <input
-                        type="password"
-                        id="confirmPassword"
-                        name="confirmPassword"
-                        className="signup-input"
-                        onChange={passwordCheck}
-                        placeholder="비밀번호를 다시 입력하세요."
-                        required
-                    />
+                    <input type="password" id="confirmPassword" name="confirmPassword" className="signup-input" onChange={passwordCheck} placeholder="비밀번호를 다시 입력하세요." required />
                 </fieldset>
                 {passwordMatch === false && (
                     <p className="error-message">비밀번호가 일치하지 않습니다</p>
@@ -106,25 +75,11 @@ function Signup() {
                 )}
                 <fieldset className="form-group">
                     <label htmlFor="nickname">닉네임</label>
-                    <input
-                        type="text"
-                        id="nickname"
-                        name="userNickname"
-                        onChange={(e) => setUserNickname(e.target.value)}
-                        placeholder="닉네임을 입력하세요."
-                        required
-                    />
+                    <input type="text" id="nickname" name="userNickname" onChange={(e) => setUserNickname(e.target.value)} placeholder="닉네임을 입력하세요." required />
                 </fieldset>
                 <fieldset className="form-group">
                     <label htmlFor="location">지역</label>
-                    <select
-                        className='signup-location-select'
-                        id="location"
-                        name="userLocation"
-                        value={userLocation}
-                        onChange={(e) => setUserLocation(e.target.value)}
-                        required
-                    >
+                    <select className='signup-location-select' id="location" name="userLocation" value={userLocation} onChange={(e) => setUserLocation(e.target.value)} required>
                         <option value="서울특별시">서울특별시</option>
                         <option value="인천광역시">인천광역시</option>
                         <option value="경기도">경기도</option>
@@ -144,9 +99,7 @@ function Signup() {
                         <option value="제주특별자치도">제주특별자치도</option>
                     </select>
                 </fieldset>
-                <button type="submit" className="signUp-submit-button">
-                    회원가입
-                </button>
+                <button type="submit" className="signUp-submit-button">회원가입</button>
             </form>
         </main>
     );

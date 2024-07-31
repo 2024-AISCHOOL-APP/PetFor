@@ -7,16 +7,13 @@ const SearchResults = () => {
     const location = useLocation();
     const [categories, setCategories] = useState({ category1: '', category2: '' });
     const [searches, setSearches] = useState([]);
-  
     
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
         const category1 = queryParams.get('category1');
         const category2 = queryParams.get('category2');
-    
         setCategories({ category1, category2 });
     }, [location.search]);
-
     useEffect(() => {
         if (categories.category1 && categories.category2) {
             axios.get(`/search/searchpage?keyword1=${categories.category1}&keyword2=${categories.category2}`)
@@ -25,6 +22,7 @@ const SearchResults = () => {
         }
     }, [categories]);
     const splitString = (str) => str.split('/').map((part, index) => <p key={index}>● {part.trim()}</p>);
+
     return (
         <main className="search-results-container">
             <h2>{categories.category1} ({categories.category2})</h2>
@@ -42,7 +40,6 @@ const SearchResults = () => {
                             <h2>해결 방안</h2>
                             <div>{splitString(searching.solution)}</div>
                         </div>
-                        
                     </article>
                 ))}
             </section>
@@ -51,7 +48,6 @@ const SearchResults = () => {
                 <Link to="/Register_reco" className="button">전문가 채팅 연결</Link>
             </nav>
         </main>
-        
     );
 };
 

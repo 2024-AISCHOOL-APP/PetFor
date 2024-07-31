@@ -4,15 +4,11 @@
     align-items: center;
     justify-content: center;
     padding: 20px;
-    /* background-color: #fff9f3 ; */
     height: 100vh;
     width: 100%;
     box-sizing: border-box;
     position: relative;
     height: 380px
-    
-    
-    
 }
 
 .business-registration-back-button {
@@ -47,16 +43,11 @@ h1 {
     margin-bottom: 15px;
     width: 100%;
     max-width: 500px;
-    
-    
 }
 
 .input-group label {
-    
     font-size: 16px;
     margin-right: 10px;
-    
-    
 }
 
 .input-group input {
