@@ -1,22 +1,22 @@
-# 📎 꽃 보러 갈래?(팀명: 아름답조)
-![image](https://user-images.githubusercontent.com/25995055/178401309-2a2ffc86-ef45-439b-bfd8-6978312100bc.png)
+# 📎 꽃 보러 갈래?(팀명: 재환팀)
+![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5f7dd515-15f1-41e6-a624-bbaef8674274/eb552a8f-5b8a-430b-a983-68c82e652556/Untitled.jpeg)
 
 
 ## 👀 서비스 소개
-* 서비스명:  꽃 개화 시기별 우리 지역 근처 데이트/드라이브 추천 장소 및 꽃 축제 추천 
-* 서비스설명: 
+* 서비스명: 증상 검색을 통해 필요시 머신러닝을 이용한 전문 업체 추천 플랫폼
+* 서비스설명: 반려 동물의 증상 검색으로 간단한 결과 출력 후 필요시 플랫폼에 등록된 업체중 사용자 정보를 기반으로 추천 후 채팅 상담 연결
 <br>
 
 ## 📅 프로젝트 기간
-2022.04.22 ~ 2022.06.03 (6주)
+2024.07.22 ~ 2024.08.01 (4주)
 <br>
 
 ## ⭐ 주요 기능
-* 기능1
-* 기능2
-* 기능3
-* 기능4
-* 기능5
+* DB에 저장된 증상 데이터 기반 검색 결과 출력
+* 검색 결과 출력 후 필요시 머신러닝 통한 전문 업체 추천
+* 추천된 업체와 혹은 일반 유저 간 채팅 기능
+* LLM 사용한 챗봇기능
+* 유저간 소통을 위한 커뮤니티
 <br>
 
 ## ⛏ 기술스택
@@ -76,7 +76,8 @@
 <br>
 
 ## ⚙ 시스템 아키텍처(구조) 예시 
-![서비스 아키텍처](https://user-images.githubusercontent.com/25995055/169925538-15867bd9-aa0b-42fc-a39b-88981e926e51.png)
+![image](https://github.com/user-attachments/assets/ba5ed8df-5320-42d6-8826-b52e6882f6d8)
+
 <br>
 
 ## 📌 SW유스케이스
@@ -88,7 +89,7 @@
 <br>
 
 ## 📌 ER다이어그램
-![image](https://user-images.githubusercontent.com/25995055/169925318-102784c2-893f-4fd7-bec9-a54c44b669d4.png)
+![펫포ERD.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/5f7dd515-15f1-41e6-a624-bbaef8674274/27d72717-f745-4d2a-bcd7-215f57c6eaa5/%ED%8E%AB%ED%8F%ACERD.png)
 <br>
 
 ## 🖥 화면 구성
