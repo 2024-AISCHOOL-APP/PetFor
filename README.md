@@ -1,5 +1,6 @@
 # 📎 꽃 보러 갈래?(팀명: 재환팀)
-![Untitled](https://prod-files-secure.s3.us-west-2.amazonaws.com/5f7dd515-15f1-41e6-a624-bbaef8674274/eb552a8f-5b8a-430b-a983-68c82e652556/Untitled.jpeg)
+![Untitled](https://github.com/user-attachments/assets/b6c3e0aa-3241-4921-8401-27d8bdb93ff2)
+
 
 
 ## 👀 서비스 소개
