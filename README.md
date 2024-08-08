@@ -1,4 +1,4 @@
-# 📎 PET FOR(팀명: 절절포팀(절대절대포기하지말자))
+# 📎 꽃 보러 갈래?(팀명: 재환팀)
 ![Untitled](https://github.com/user-attachments/assets/b6c3e0aa-3241-4921-8401-27d8bdb93ff2)
 
 
@@ -9,7 +9,7 @@
 <br>
 
 ## 📅 프로젝트 기간
-2024.07.22 ~ 2024.08.01 (2주)
+2024.07.22 ~ 2024.08.01 (4주)
 <br>
 
 ## ⭐ 주요 기능
@@ -29,42 +29,44 @@
     <tr>
         <td>사용언어</td>
         <td>
-            <img src="https://img.shields.io/badge/Java-007396?style=for-the-badge&logo=java&logoColor=white"/>
-            <img src="https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=HTML5&logoColor=white"/>
-            <img src="https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=CSS3&logoColor=white"/>
-            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
+            <img src="https://github.com/user-attachments/assets/e5d0cd5b-a7bd-4760-9944-948996e7e7b4"/>
+            <img src="https://github.com/user-attachments/assets/4efa8058-5370-4359-b79c-2a22330e5480"/>
+            <img src="https://github.com/user-attachments/assets/8a4666f4-06a1-481b-ad5e-ece365299a44"/>
         </td>
     </tr>
     <tr>
         <td>라이브러리</td>
         <td>
-            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
+            <img src="https://github.com/user-attachments/assets/c912d3ac-e680-497d-bfe2-937a41622f94"/>
+            <img src="https://github.com/user-attachments/assets/a81a90e4-e297-4679-9499-284d1786600b"/>
+            <img src="https://github.com/user-attachments/assets/607addd2-d19a-421e-8153-c6281586e5b2"/>
+            <img src="https://github.com/user-attachments/assets/e8b6a4d3-c0f4-43a9-b9d4-f6be972b3577"/>
         </td>
     </tr>
     <tr>
         <td>개발도구</td>
         <td>
-            
-            <img src="https://img.shields.io/badge/VSCode-007ACC?style=for-the-badge&logo=VisualStudioCode&logoColor=white"/>
+            <img src="https://github.com/user-attachments/assets/222a7ff6-ef9e-40d0-887b-3069f4863293"/>
         </td>
     </tr>
     <tr>
         <td>서버환경</td>
         <td>
-            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
+            <img src="https://github.com/user-attachments/assets/79bf1dba-0691-491a-8246-40dda8e2c501"/>
+            <img src="https://github.com/user-attachments/assets/6c9c8a89-c293-47d7-bb20-63ff873789ba"/>
         </td>
     </tr>
     <tr>
         <td>데이터베이스</td>
         <td>
-            <img src="https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white"/>
+            <img src="https://github.com/user-attachments/assets/5d632ad8-f5fc-4427-a0ff-d2c9264c3032"/>
         </td>
     </tr>
     <tr>
         <td>협업도구</td>
         <td>
-            <img src="https://img.shields.io/badge/Git-F05032?style=for-the-badge&logo=Git&logoColor=white"/>
-            <img src="https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=GitHub&logoColor=white"/>
+            <img src="https://github.com/user-attachments/assets/e66c2905-e86e-4ed3-9e91-7a83ea450472"/>
+            <img src="https://github.com/user-attachments/assets/bab3474b-4f6c-40f8-bc92-9fc2e36c6268"/>
         </td>
     </tr>
 </table>
