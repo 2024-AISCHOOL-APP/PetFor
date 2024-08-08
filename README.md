@@ -90,7 +90,8 @@
 <br>
 
 ## 📌 ER다이어그램
-![펫포ERD.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/5f7dd515-15f1-41e6-a624-bbaef8674274/27d72717-f745-4d2a-bcd7-215f57c6eaa5/%ED%8E%AB%ED%8F%ACERD.png)
+![펫포ERD](https://github.com/user-attachments/assets/e6bcff56-b6a7-4451-aa70-9abbda186408)
+
 <br>
 
 ## 🖥 화면 구성
