@@ -110,28 +110,24 @@
 ## 👨‍👩‍👦‍👦 팀원 역할
 <table>
   <tr>
-    <td align="center"><img src="https://item.kakaocdn.net/do/fd49574de6581aa2a91d82ff6adb6c0115b3f4e3c2033bfd702a321ec6eda72c" width="100" height="100"/></td>
-    <td align="center"><img src="https://mb.ntdtv.kr/assets/uploads/2019/01/Screen-Shot-2019-01-08-at-4.31.55-PM-e1546932545978.png" width="100" height="100"/></td>
-    <td align="center"><img src="https://mblogthumb-phinf.pstatic.net/20160127_177/krazymouse_1453865104404DjQIi_PNG/%C4%AB%C4%AB%BF%C0%C7%C1%B7%BB%C1%EE_%B6%F3%C0%CC%BE%F0.png?type=w2" width="100" height="100"/></td>
-    <td align="center"><img src="https://i.pinimg.com/236x/ed/bb/53/edbb53d4f6dd710431c1140551404af9.jpg" width="100" height="100"/></td>
-    <td align="center"><img src="https://pbs.twimg.com/media/B-n6uPYUUAAZSUx.png" width="100" height="100"/></td>
+    <td align="center"><img src="" width="100" height="100"/></td>
+    <td align="center"><img src="" width="100" height="100"/></td>
+    <td align="center"><img src="" width="100" height="100"/></td>
+    <td align="center"><img src="" width="100" height="100"/></td>
   </tr>
   <tr>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
-    <td align="center"><strong>홍O동</strong></td>
+    <td align="center"><strong>임재환</strong></td>
+    <td align="center"><strong>임은영</strong></td>
+    <td align="center"><strong>정현지</strong></td>
+    <td align="center"><strong>노효주</strong></td>
   </tr>
   <tr>
-    <td align="center"><b>Frontend</b></td>
-    <td align="center"><b>Frontend</b></td>
+    <td align="center"><b>PM, Frontend</b></td>
+    <td align="center"><b>Backend, ML</b></td>
     <td align="center"><b>Backend</b></td>
-    <td align="center"><b>Backend</b></td>
-    <td align="center"><b>Deep Learning</b></td>
+    <td align="center"><b>Backend, Frontend</b></td>
   </tr>
   <tr>
-    <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
     <td align="center"><a href="https://github.com/자신의username작성해주세요" target='_blank'>github</a></td>
@@ -139,12 +135,18 @@
   </tr>
 </table>
 
-## 🤾‍♂️ 트러블슈팅
-개념: 문제 해결을 위해 문제의 원인을 논리적이고 체계적으로 찾는 일이며 제품이나 프로세스의 운영을 재개
-프로젝트 진행하는 동안 발생했던 이슈 중 가장 기억에 남았던 문제와 해결 프로세스 나열(2~5가지 정도)
+## 💡 트러블슈팅
   
 * 문제1<br>
- 문제점 설명 및 해결방안
- 
+ fastAPI를 이용한 모델과 Node.js 서버를 연결하는 과정에서 오류 발생. 원인을 파악해보니 노드 서버에서 사용하는 axios의 baseURL 설정과 fastAPI 서버의 URL이 일치하지 않아 발생하는 문제였다.<br>
+ ![Untitled](https://github.com/user-attachments/assets/27544813-480c-4dc0-9546-ae9bab0e06e8)
+* 해결1<br>
+ 모델을 요청할 때 fastAPI 서버로 이동하는 URL을 따로 설정해주었다.<br>
+ ![Untitled (1)](https://github.com/user-attachments/assets/6f607f2f-74fd-42b1-ab67-ff370707ef71)
+
 * 문제2<br>
- 문제점 설명 및 해결방안
+  Socket.IO를 이용한 실시간 채팅 기능 구현 중 상대방이 보낸 메세지를 실시간으로 띄울 수 없는 문제 발생. 서버에서 이전 대화를 불러올 때의 데이터 형식과 채팅을 주고 받을 때의 데이터 형식이 일치하지 않아서 발생하는 문제였다.<br>
+  ![Untitled (2)](https://github.com/user-attachments/assets/ad69fe85-7466-4fab-af4e-4384324e3d1d)
+* 해결2<br>
+  서버의 chatRouter에서 메세지를 전송할 때, 서버에서 불러오는 데이터 형식과 동일하게 전송할 수 있도록 포맷팅 해주었다.
+  ![Untitled (3)](https://github.com/user-attachments/assets/118df1d0-0062-4eb3-b05f-ec56d209969f)
