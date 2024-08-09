@@ -143,12 +143,15 @@
 <br>
 * 해결1<br>
  모델을 요청할 때 fastAPI 서버로 이동하는 URL을 따로 설정해주었다.<br>
- ![Untitled (1)](https://github.com/user-attachments/assets/6f607f2f-74fd-42b1-ab67-ff370707ef71)
+ ![Untitled (1)](https://github.com/user-attachments/assets/f4774997-d788-4533-90dc-4110fa5a44bf)
+
 <br><br>
 * 문제2<br>
   Socket.IO를 이용한 실시간 채팅 기능 구현 중 상대방이 보낸 메세지를 실시간으로 띄울 수 없는 문제 발생. 서버에서 이전 대화를 불러올 때의 데이터 형식과 채팅을 주고 받을 때의 데이터 형식이 일치하지 않아서 발생하는 문제였다.<br>
-  ![Untitled (2)](https://github.com/user-attachments/assets/ad69fe85-7466-4fab-af4e-4384324e3d1d)
+  ![Untitled (2)](https://github.com/user-attachments/assets/dfcd53cf-0213-4dcc-a928-8a5c84786ed8)
+
 <br>
 * 해결2<br>
   서버의 chatRouter에서 메세지를 전송할 때, 서버에서 불러오는 데이터 형식과 동일하게 전송할 수 있도록 포맷팅 해주었다.
-  ![Untitled (3)](https://github.com/user-attachments/assets/118df1d0-0062-4eb3-b05f-ec56d209969f)
+  ![Untitled (3)](https://github.com/user-attachments/assets/bfe0732e-f4b4-47bf-b3ee-5aec2ee7ace3)
+
