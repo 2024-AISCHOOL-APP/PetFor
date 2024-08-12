@@ -81,7 +81,8 @@
 <br>
 
 ## 📌 SW유스케이스
-![image](https://user-images.githubusercontent.com/25995055/178401023-9a015e66-aa6e-4d74-8564-9b1f9d306649.png)
+![펫포유스케이스 drawio](https://github.com/user-attachments/assets/bcdc6686-a074-4feb-af4c-43e674821d65)
+
 <br>
 
 ## 📌 서비스 흐름도
