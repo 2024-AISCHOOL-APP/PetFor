@@ -98,16 +98,38 @@
 
 ## 🖥 화면 구성
 
-### 로그인/회원가입/회원괸리/회원수정/회원탈퇴
-![image](https://user-images.githubusercontent.com/25995055/178401098-95f15a0e-a2de-415e-83d5-883bb4cb0656.png)
+### 홈화면/증상 검색/업체 추처/추천 업체 채팅
+![001](https://github.com/user-attachments/assets/f7442904-2553-43af-afac-4e910888fa6d)
+
 <br>
 
-### 옷 정보/코디 추천(날씨, 팁, 오늘의 코디, 참고할 수 있는 코디)
-![image](https://user-images.githubusercontent.com/25995055/178401127-287e6de2-4396-49fc-a107-59c4d5cd55c7.png)
+### 로그인/회원가입
+![006](https://github.com/user-attachments/assets/b337e9c7-1161-447c-99b5-df9626c4298e)
+
 <br>
 
-### 일정/고객센터
-![image](https://user-images.githubusercontent.com/25995055/178401150-861f0e93-0f40-4fae-98c1-2099bf513c8d.png)
+### 등록업체/업체 등록 방식/사업자 등록/전문의 등록
+![002](https://github.com/user-attachments/assets/f3779084-35db-472a-92f9-622add723d96)
+
+<br>
+
+### 커뮤니티/글 쓰기/글 보기/글 수정
+![003](https://github.com/user-attachments/assets/16dd26ec-680f-4879-b08a-023fc54e8124)
+
+
+<br>
+
+### 채팅/채팅방
+![004](https://github.com/user-attachments/assets/0b1000e5-f539-45bb-a8d4-05747605aebc)
+
+
+<br>
+
+### 챗봇/챗봇 결과
+![005](https://github.com/user-attachments/assets/f1378bc4-2f8b-4134-8d0f-585332914a73)
+
+
+
 <br>
 
 ## 👨‍👩‍👦‍👦 팀원 역할
